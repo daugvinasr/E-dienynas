@@ -85,35 +85,35 @@
             </li>
             <li>
             <li>
-                <a title="Atsiliepimai" href="/atsiliepimai.html" class="h-16 px-6 flex items-center hover:text-white w-full">
+                <a title="Atsiliepimai" href="/atsiliepimai" class="h-16 px-6 flex items-center hover:text-white w-full">
                     <i class="mx-auto">
                         <h1>Atsiliepimai</h1>
                     </i>
                 </a>
             </li>
             <li>
-                <a title="Pažymiai" href="/pazymiai.html" class="h-16 px-6 flex items-center hover:text-white w-full">
+                <a title="Pažymiai" href="/pazymiai" class="h-16 px-6 flex items-center hover:text-white w-full">
                     <i class="mx-auto">
                         <h1>Pažymiai</h1>
                     </i>
                 </a>
             </li>
             <li>
-                <a title="Tvarkaraštis" href="/tvarkarastis.html" class="h-16 px-6 flex items-center hover:text-white w-full">
+                <a title="Tvarkaraštis" href="/tvarkarastis" class="h-16 px-6 flex items-center hover:text-white w-full">
                     <i class="mx-auto">
                         <h1>Tvarkaraštis</h1>
                     </i>
                 </a>
             </li>
             <li>
-                <a title="Namų darbai" href="/namudarbai.html" class="h-16 px-6 flex items-center hover:text-white w-full">
+                <a title="Namų darbai" href="/namudarbai" class="h-16 px-6 flex items-center hover:text-white w-full">
                     <i class="mx-auto">
                         <h1>Namų darbai</h1>
                     </i>
                 </a>
             </li>
             <li>
-                <a title="Naudotojai" href="/naudotojai.html" class="h-16 px-6 flex items-center hover:text-white w-full">
+                <a title="Naudotojai" href="/naudotojai" class="h-16 px-6 flex items-center hover:text-white w-full">
                     <i class="mx-auto">
                         <h1>Naudotojai</h1>
                     </i>
@@ -127,9 +127,9 @@
 
         <div class="flex flex-row-reverse p-2">
 
-            <a href="/registuotis.html" class="block px-5 py-4 text-white bg-gray-600 shadow-lg rounded-lg">Registruotis</a>
+            <a href="/registruotis" class="block px-5 py-4 text-white bg-gray-600 shadow-lg rounded-lg">Registruotis</a>
             <a class="text-white">XD</a>
-            <a href="/prisijungti.html" class="block px-5 py-4 text-white bg-gray-500 shadow-lg rounded-lg">Prisijungti</a>
+            <a href="/prisijungti" class="block px-5 py-4 text-white bg-gray-500 shadow-lg rounded-lg">Prisijungti</a>
 
         </div>
 
