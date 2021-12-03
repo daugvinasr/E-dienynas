@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\NamuDarbasController;
 use App\Http\Controllers\AtsiliepimasController;
+use App\Http\Controllers\NaudotojasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,15 +16,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+    return view('PagrindinisLangas');
+});
+
 
 Route::get('/namudarbai', [NamuDarbasController::class, 'showHomework']);
 Route::get('/pridetinamudarba', [NamuDarbasController::class, 'showAddHomework']);
 Route::post('/pridetinamudarba', [NamuDarbasController::class, 'addHomework']);
 Route::get('/placiaunamudarbas', [NamuDarbasController::class, 'moreHomework']);
-Route::get('/', function () {
-    return view('PagrindinisLangas');
-});
+
 Route::get('/rodytiAtsiliepimoForma/{id_mokinys}', [AtsiliepimasController::class, 'rodytiAtsiliepimoForma']);
 Route::post('/rodytiAtsiliepimoForma/{id_mokinys}', [AtsiliepimasController::class, 'irasytiAtsiliepimoForma']);
+
+Route::get('/prisijungti', [NaudotojasController::class, 'rodytiPrisijungima']);
+Route::post('/prisijungti', [NaudotojasController::class, 'prisijungti']);
+
+Route::get('/registruotis', [NaudotojasController::class, 'rodytiRegistracija']);
+Route::post('/registruotis', [NaudotojasController::class, 'registruotis']);
+
+Route::get('/atsijungti', [NaudotojasController::class, 'atsijungti']);
+
 
 

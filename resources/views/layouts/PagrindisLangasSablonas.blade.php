@@ -17,12 +17,12 @@
 <!DOCTYPE html>
 <html class="h-full" lang="en">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <link rel="stylesheet" href="./tailwind.css" />
+    <link rel="stylesheet" href="./tailwind.css"/>
     <title>Chi Desk</title>
     <style>
         html {
@@ -32,6 +32,7 @@
             Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Arial,
             sans-serif;
         }
+
         html, body {
             width: 100%;
             height: 100%;
@@ -54,12 +55,15 @@
         .h-16 {
             height: 50px;
         }
+
         .bg-teal-900 {
             background: #03363d;
         }
+
         .bg-gray-100 {
             background: #f8f9f9;
         }
+
         .hover\:border-green-500:hover {
             border-color: #78a300;
         }
@@ -68,11 +72,11 @@
 
 <body class="antialiased h-full">
 
-<div class="h-full w-full flex overflow-hidden antialiased text-gray-800 bg-white">
+<div class="h-full w-full flex antialiased text-gray-800 bg-white">
     <!-- section body side nav -->
     <nav aria-label="side bar" aria-orientation="vertical" class="flex-none flex flex-col items-center text-center bg-teal-900 text-gray-400 border-r">
         <div class="h-16 flex items-center w-full">
-            <img class="h-8 w-8 mx-auto" src="https://i.imgur.com/q7dPshl.png" />
+            <img class="h-8 w-8 mx-auto" src="https://i.imgur.com/q7dPshl.png"/>
         </div>
 
         <ul>
@@ -130,13 +134,18 @@
             <a href="/registruotis" class="block px-5 py-4 text-white bg-gray-600 shadow-lg rounded-lg">Registruotis</a>
             <a class="text-white">XD</a>
             <a href="/prisijungti" class="block px-5 py-4 text-white bg-gray-500 shadow-lg rounded-lg">Prisijungti</a>
+            <a class="text-white">XD</a>
+            @if(session('id_user') != null)
+                <a href="#" class="block px-5 py-4 text-white bg-gray-500 shadow-lg rounded-lg">{{session('role')}}</a>
+                <a class="text-white">XD</a>
+                <a href="/atsijungti" class="block px-5 py-4 text-white bg-gray-500 shadow-lg rounded-lg">Atsijungti</a>
+            @endif
 
         </div>
 
         <!-- main content -->
 
         @yield('content')
-
 
 
     </div>
