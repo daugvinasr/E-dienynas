@@ -1,10 +1,44 @@
 @extends('layouts.PagrindisLangasSablonas')
-
-
 @section('content')
-    <section class="container mx-auto p-6 rounded-10">
-        <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg px-2 py-2">
-            <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus ut placeat sint perspiciatis corrupti assumenda nihil explicabo excepturi voluptate voluptas. Iusto, nulla ex atque odit rerum voluptate obcaecati maiores! Dignissimos est, enim aspernatur possimus unde earum corporis ab? Voluptate aliquam est dignissimos commodi doloremque nobis vel at, perspiciatis quasi molestiae?</h1>
+    <div class="h-screen bg-gray-100 justify-center">
+        <div class="ml-96 py-6 px-8 h-120 w-80 mt-20 bg-white rounded shadow-xl">
+            <form method="POST">
+                @csrf
+                <div class="mb-4">
+                    <label for="name" class="block text-gray-800 font-bold">Pavadinimas:</label>
+                    <input name="Pavadinimas" type="text"  class="w-full border border-gray-300 py-2 pl-3 rounded mt-2 outline-none focus:ring-indigo-600 :ring-indigo-600" />
+                    @error('Pavadinimas')
+                    {{ $message }}
+                    @enderror
+                </div>
+                <div class="mb-4">
+                    <label for="name" class="block text-gray-800 font-bold">Aprašymas:</label>
+                    <input  name="Aprasymas" type="text" class="w-full border border-gray-300 py-2 pl-3 rounded mt-2 outline-none focus:ring-indigo-600 :ring-indigo-600" />
+                    @error('Aprasymas')
+                    {{ $message }}
+                    @enderror
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-800 font-bold">Atlikti Iki:</label>
+                    <input name="Atlikti_Iki" type="date"  class="w-full border border-gray-300 py-2 pl-3 rounded mt-2 outline-none focus:ring-indigo-600 :ring-indigo-600" />
+                    @error('Atlikti_Iki')
+                    {{ $message }}
+                    @enderror
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-800 font-bold">Užsiemimas:</label>
+                    <select id="fk_Tvarkarascio_Uzsiemimas" name="fk_Tvarkarascio_Uzsiemimas">
+                        @foreach($uzsiemimaiData as $data)
+                        <option value="{{$data -> id_Tvarkarascio_Uzsiemimas}}">{{$data -> id_Tvarkarascio_Uzsiemimas}}</option>
+                        @endforeach
+                    </select>
+                    @error('fk_Tvarkarascio_Uzsiemimas')
+                    {{ $message }}
+                    @enderror
+                </div>
+
+                <button class="cursor-pointer py-2 px-4 block mt-6 bg-indigo-500 text-white font-bold w-full text-center rounded " type="submit">Pridėti namų darbą</button>
+            </form>
         </div>
-    </section>
+    </div>
 @endsection
