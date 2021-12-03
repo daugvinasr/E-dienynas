@@ -130,15 +130,16 @@
     <div class="flex-1 flex flex-col">
 
         <div class="flex flex-row-reverse p-2">
-
+            @if(session('id_user') == null)
             <a href="/registruotis" class="block px-5 py-4 text-white bg-gray-600 shadow-lg rounded-lg">Registruotis</a>
             <a class="text-white">XD</a>
             <a href="/prisijungti" class="block px-5 py-4 text-white bg-gray-500 shadow-lg rounded-lg">Prisijungti</a>
             <a class="text-white">XD</a>
+            @endif
             @if(session('id_user') != null)
-                <a href="#" class="block px-5 py-4 text-white bg-gray-500 shadow-lg rounded-lg">{{session('role')}}</a>
+                    <a href="/atsijungti" class="block px-5 py-4 text-white bg-gray-500 shadow-lg rounded-lg">Atsijungti</a>
                 <a class="text-white">XD</a>
-                <a href="/atsijungti" class="block px-5 py-4 text-white bg-gray-500 shadow-lg rounded-lg">Atsijungti</a>
+                    <a href="#" class="block px-5 py-4 text-white bg-gray-500 shadow-lg rounded-lg">{{session('role')}}</a>
             @endif
 
         </div>
