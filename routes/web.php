@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\NamuDarbasController;
+use App\Http\Controllers\AtsiliepimasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,10 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () { return view('PagrindinisLangas');});
+
 Route::get('/namudarbai', [NamuDarbasController::class, 'showHomework']);
 Route::get('/pridetinamudarba', [NamuDarbasController::class, 'showAddHomework']);
 Route::post('/pridetinamudarba', [NamuDarbasController::class, 'addHomework']);
 Route::get('/placiaunamudarbas', [NamuDarbasController::class, 'moreHomework']);
+Route::get('/', function () {
+    return view('PagrindinisLangas');
+});
+Route::get('/rodytiAtsiliepimoForma/{id_mokinys}', [AtsiliepimasController::class, 'rodytiAtsiliepimoForma']);
+Route::post('/rodytiAtsiliepimoForma/{id_mokinys}', [AtsiliepimasController::class, 'irasytiAtsiliepimoForma']);
 
 
