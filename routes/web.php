@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NamuDarbasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () { return view('PagrindinisLangas');});
-
+Route::get('/namudarbai', [NamuDarbasController::class, 'showHomework']);
+Route::get('/pridetinamudarba', [NamuDarbasController::class, 'showAddHomework']);
+Route::post('/pridetinamudarba', [NamuDarbasController::class, 'addHomework']);
+Route::get('/placiaunamudarbas', [NamuDarbasController::class, 'moreHomework']);
 
 
