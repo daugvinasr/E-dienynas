@@ -25,16 +25,18 @@ Route::get('/namudarbai', [NamuDarbasController::class, 'showHomework']);
 Route::get('/pridetinamudarba', [NamuDarbasController::class, 'showAddHomework']);
 Route::post('/pridetinamudarba', [NamuDarbasController::class, 'addHomework']);
 Route::get('/placiaunamudarbas', [NamuDarbasController::class, 'moreHomework']);
+Route::get('/pasalintinamudarbas', [NamuDarbasController::class, 'removeHomework']);
+Route::get('/redaguotinamudarbas', [NamuDarbasController::class, 'showEditHomework']);
+Route::post('/redaguotinamudarbas', [NamuDarbasController::class, 'editHomework']);
 
 Route::get('/rodytiAtsiliepimoForma/{id_mokinys}', [AtsiliepimasController::class, 'rodytiAtsiliepimoForma']);
 Route::post('/rodytiAtsiliepimoForma/{id_mokinys}', [AtsiliepimasController::class, 'irasytiAtsiliepimoForma']);
 
+//auth
 Route::get('/prisijungti', [NaudotojasController::class, 'rodytiPrisijungima']);
 Route::post('/prisijungti', [NaudotojasController::class, 'prisijungti']);
-
 Route::get('/registruotis', [NaudotojasController::class, 'rodytiRegistracija']);
 Route::post('/registruotis', [NaudotojasController::class, 'registruotis']);
-
 Route::get('/atsijungti', [NaudotojasController::class, 'atsijungti']);
 
 
