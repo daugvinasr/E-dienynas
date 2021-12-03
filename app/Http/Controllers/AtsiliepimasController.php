@@ -23,5 +23,19 @@ class AtsiliepimasController extends Controller
         }
     }
 
+    public function irasytiAtsiliepimoForma($id_mokinys)
+    {
+        $atsiliepimas = new Atsiliepimai();
+        $atsiliepimas->Pavadinimas = request('pavadinimas');
+        $atsiliepimas->Aprasymas = request('textarea');
+        $atsiliepimas->Data = date('Y-m-d');
+        //TODO: is session paiimt mokytojo id ir idet kai bus
+        $atsiliepimas->fk_Mokytojas = 1;
+        $atsiliepimas->fk_Mokinys = $id_mokinys;
+        $atsiliepimas->save();
+        //TODO: turetu redirectint kazkur normaliau
+        return redirect('/');
+    }
+
 
 }
