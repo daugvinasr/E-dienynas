@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AtsiliepimasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () { return view('PagrindinisLangas');});
+Route::get('/', function () {
+    return view('PagrindinisLangas');
+});
 
+Route::get('/rodytiAtsiliepimoForma/{id_mokinys}', [AtsiliepimasController::class, 'rodytiAtsiliepimoForma']);
 
 
