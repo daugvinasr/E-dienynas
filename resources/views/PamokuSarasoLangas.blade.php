@@ -1,4 +1,4 @@
-@extends('layouts.PagrindisLangasSablonas.php')
+@extends('layouts.PagrindisLangasSablonas')
 
 
 @section('content')
