@@ -20,6 +20,9 @@ Route::get('/namudarbai', [NamuDarbasController::class, 'showHomework']);
 Route::get('/pridetinamudarba', [NamuDarbasController::class, 'showAddHomework']);
 Route::post('/pridetinamudarba', [NamuDarbasController::class, 'addHomework']);
 Route::get('/placiaunamudarbas', [NamuDarbasController::class, 'moreHomework']);
+Route::get('/pasalintinamudarbas', [NamuDarbasController::class, 'removeHomework']);
+Route::get('/redaguotinamudarbas', [NamuDarbasController::class, 'showEditHomework']);
+Route::post('/redaguotinamudarbas', [NamuDarbasController::class, 'editHomework']);
 Route::get('/', function () {
     return view('PagrindinisLangas');
 });

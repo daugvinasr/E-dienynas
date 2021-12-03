@@ -15,12 +15,12 @@ class NamuDarbasController extends Controller
     }
     public function showAddHomework(){
         $uzsiemimaiData = Tvarkarascio_uzsiemimai::all();
-        return view('NamuDarboForma', ['uzsiemimaiData' => $uzsiemimaiData]);
+        return view('NamuDarboPridejimoForma', ['uzsiemimaiData' => $uzsiemimaiData]);
     }
     public function addHomework(){
         request()->validate([
             'Pavadinimas' => 'required|max:254',
-            'Aprasymas' => 'required|max:254|',
+            'Aprasymas' => 'required|max:254',
             'Atlikti_Iki' => 'required|max:254',
             'fk_Tvarkarascio_Uzsiemimas'=>'required',
         ]);
@@ -38,6 +38,31 @@ class NamuDarbasController extends Controller
         $id = request('id');
         $homeworkData = Namu_darbai::where('id_Namu_Darbas', $id)->get();
         return view('NamuDarboInformacijosLangas', ['homeworkData' => $homeworkData]);
+    }
+    public function removeHomework(){
+        $id = request('id');
+        Namu_darbai::where('id_Namu_Darbas', $id)->delete();
+        return redirect('/namudarbai');
+    }
+    public function showEditHomework(){
+        $id = request('id');
+        $homeworkData = Namu_darbai::where('id_Namu_Darbas', $id)->get();
+        $temp=$homeworkData[0]->fk_Tvarkarascio_Uzsiemimas;
+        $uzsiemimasData = Tvarkarascio_uzsiemimai::where('id_Tvarkarascio_Uzsiemimas',$temp)->get();
+        $uzsiemimaiData = Tvarkarascio_uzsiemimai::where('id_Tvarkarascio_Uzsiemimas','!=',$temp)->get();
+        return view('NamuDarboRedagavimoForma', ['homeworkData' => $homeworkData,'uzsiemimasData' => $uzsiemimasData,'uzsiemimaiData' => $uzsiemimaiData]);
+    }
+    public function editHomework(){
+        request()->validate([
+            'Pavadinimas' => 'required|max:254',
+            'Aprasymas' => 'required|max:254',
+            'Atlikti_Iki' => 'required|max:254',
+            'fk_Tvarkarascio_Uzsiemimas'=>'required',
+        ]);
+        $id = request('id');
+        $homeworkUpdate = Namu_darbai::where('id_Namu_Darbas', $id);
+        $homeworkUpdate->update(['Pavadinimas' =>request('Pavadinimas'),'Aprasymas'=>request('Aprasymas'),'Atlikti_Iki'=>request('Atlikti_Iki'),'fk_Tvarkarascio_Uzsiemimas'=>request('fk_Tvarkarascio_Uzsiemimas')]);
+        return redirect('/namudarbai');
     }
 
 }
