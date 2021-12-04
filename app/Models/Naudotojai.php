@@ -10,4 +10,6 @@ class Naudotojai extends Model
     use HasFactory;
     protected $table = 'Naudotojai';
     public $timestamps = false;
+
+
 }

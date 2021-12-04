@@ -10,4 +10,9 @@ class Mokytojai extends Model
     use HasFactory;
     protected $table = 'Mokytojai';
     public $timestamps = false;
+
+    public function mokytojasToNaudotojas()
+    {
+        return $this->belongsTo(Naudotojai::class, 'fk_Naudotojas', 'id_Naudotojas');
+    }
 }

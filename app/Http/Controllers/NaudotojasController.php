@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Administratoriai;
+use App\Models\Mokiniai;
+use App\Models\Mokytojai;
 use App\Models\Naudotojai;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -32,6 +35,22 @@ class NaudotojasController extends Controller
             Session::put('vardas', $data[0]->Vardas);
             Session::put('pavarde', $data[0]->Pavarde);
             Session::put('role', $data[0]->Role);
+
+            if ($data[0]->Role == 'mokinys')
+            {
+                $duomenys = Mokiniai::select('*')->where([['fk_Naudotojas', '=', $data[0]->id_Naudotojas]])->get();
+                Session::put('id_person', $duomenys[0]->id_Mokinys);
+            }
+            else if ($data[0]->Role == 'mokytojas')
+            {
+                $duomenys = Mokytojai::select('*')->where([['fk_Naudotojas', '=', $data[0]->id_Naudotojas]])->get();
+                Session::put('id_person', $duomenys[0]->id_Mokytojas);
+            }
+            else if ($data[0]->Role == 'administratorius')
+            {
+                $duomenys = Administratoriai::select('*')->where([['fk_Naudotojas', '=', $data[0]->id_Naudotojas]])->get();
+                Session::put('id_person', $duomenys[0]->id_Administratorius);
+            }
             return redirect('/');
         } else {
             return back()->withErrors(['loginFail' => 'Įvesti neteisingi duomenys.']);

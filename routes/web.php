@@ -31,7 +31,12 @@ Route::post('/redaguotinamudarbas', [NamuDarbasController::class, 'editHomework'
 
 Route::get('/rodytiAtsiliepimoForma/{id_mokinys}', [AtsiliepimasController::class, 'rodytiAtsiliepimoForma']);
 Route::post('/rodytiAtsiliepimoForma/{id_mokinys}', [AtsiliepimasController::class, 'irasytiAtsiliepimoForma']);
+Route::get('/rodytiRedagavimoAtsiliepimoForma/{id_atsiliepimas}/{id_mokinys}', [AtsiliepimasController::class, 'rodytiRedagavimoAtsiliepimoForma']);
+Route::post('/rodytiRedagavimoAtsiliepimoForma/{id_atsiliepimas}/{id_mokinys}', [AtsiliepimasController::class, 'irasytiRedagavimoAtsiliepimoForma']);
 
+Route::get('/rodytiAtsiliepimuSarasa/{id_mokinys}', [AtsiliepimasController::class, 'rodytiAtsiliepimuSarasa']);
+Route::get('/rodytiAtsiliepima/{id_atsiliepimas}', [AtsiliepimasController::class, 'rodytiAtsiliepima']);
+Route::get('/istrintiAtsiliepima/{id_atsiliepimas}/{id_mokinys}', [AtsiliepimasController::class, 'istrintiAtsiliepima']);
 //auth
 Route::get('/prisijungti', [NaudotojasController::class, 'rodytiPrisijungima']);
 Route::post('/prisijungti', [NaudotojasController::class, 'prisijungti']);

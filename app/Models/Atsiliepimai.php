@@ -17,4 +17,9 @@ class Atsiliepimai extends Model
     {
         return $this->belongsTo(Mokiniai::class, 'fk_Mokinys', 'id_Mokinys');
     }
+
+    public function atsiliepimasToMokytojas()
+    {
+        return $this->belongsTo(Mokytojai::class, 'fk_Mokytojas', 'id_Mokytojas');
+    }
 }

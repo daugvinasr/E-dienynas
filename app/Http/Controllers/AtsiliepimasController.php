@@ -10,13 +10,13 @@ class AtsiliepimasController extends Controller
 {
     public function rodytiAtsiliepimoForma($id_mokinys)
     {
-        $atsiliepimoInformacija = Atsiliepimai::select('*')
+        $atsiliepimoInformacija = Mokiniai::select('*')
             ->where([
-                ['fk_Mokinys', '=', $id_mokinys],
+                ['id_Mokinys', '=', $id_mokinys],
             ])
             ->get();
 
-        if (!$atsiliepimoInformacija->isEmpty()) {
+        if (!$atsiliepimoInformacija->isEmpty() && session('role') == 'mokytojas') {
             return view('AtsiliepimoForma', ['atsiliepimoInformacija' => $atsiliepimoInformacija]);
         } else {
             return redirect('/');
@@ -29,13 +29,60 @@ class AtsiliepimasController extends Controller
         $atsiliepimas->Pavadinimas = request('pavadinimas');
         $atsiliepimas->Aprasymas = request('textarea');
         $atsiliepimas->Data = date('Y-m-d');
-        //TODO: is session paiimt mokytojo id ir idet kai bus
-        $atsiliepimas->fk_Mokytojas = 1;
+        $atsiliepimas->fk_Mokytojas = session('id_person');
         $atsiliepimas->fk_Mokinys = $id_mokinys;
         $atsiliepimas->save();
-        //TODO: turetu redirectint kazkur normaliau
-        return redirect('/');
+        return redirect('/rodytiAtsiliepimuSarasa/'.$id_mokinys);
     }
 
+    public function rodytiAtsiliepimuSarasa($id_mokinys)
+    {
+        $atsiliepimoInformacija = Atsiliepimai::select('*')
+            ->where([
+                ['fk_Mokinys', '=', $id_mokinys],
+            ])
+            ->get();
+
+        return view('AtsiliepimuSarasoLangas', ['atsiliepimoInformacija' => $atsiliepimoInformacija, 'id_mokinys' => $id_mokinys]);
+    }
+
+    public function rodytiAtsiliepima($id_atsiliepimas)
+    {
+        $atsiliepimoInformacija = Atsiliepimai::select('*')
+            ->where([
+                ['id_Atsiliepimas', '=', $id_atsiliepimas],
+            ])
+            ->get();
+
+        if (!$atsiliepimoInformacija->isEmpty()) {
+            return view('AtsiliepimuInformacijosLangas', ['atsiliepimoInformacija' => $atsiliepimoInformacija, 'id_mokinys' => $atsiliepimoInformacija[0]->atsiliepimasToMokinys->id_Mokinys]);
+        } else {
+            return redirect('/');
+        }
+    }
+
+    public function istrintiAtsiliepima($id_atsiliepimas,$id_mokinys)
+    {
+        Atsiliepimai::where('id_Atsiliepimas','=',$id_atsiliepimas)->delete();
+        return redirect('/rodytiAtsiliepimuSarasa/'.$id_mokinys);
+    }
+
+    public function rodytiRedagavimoAtsiliepimoForma($id_atsiliepimas,$id_mokinys)
+    {
+        $atsiliepimoInformacija = Atsiliepimai::select('*')
+            ->where([
+                ['id_Atsiliepimas', '=', $id_atsiliepimas],
+            ])
+            ->get();
+
+        return view('AtsiliepimoRedagavimoForma', ['atsiliepimoInformacija' => $atsiliepimoInformacija]);
+    }
+
+    public function irasytiRedagavimoAtsiliepimoForma($id_atsiliepimas,$id_mokinys)
+    {
+        $atsiliepimas = Atsiliepimai::where('id_Atsiliepimas',$id_atsiliepimas);
+        $atsiliepimas->update(['Pavadinimas' => request('pavadinimas'),'Aprasymas' => request('textarea'),'Data' => date('Y-m-d'),'fk_Mokytojas' => session('id_person')]);
+        return redirect('/rodytiAtsiliepimuSarasa/'.$id_mokinys);
+    }
 
 }

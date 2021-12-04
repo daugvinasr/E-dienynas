@@ -9,24 +9,24 @@
                     <div class="flex flex-col justify-center items-center">
                         <label class=" text-center text-gray-700 text-xl font-bold mb-2">
                             Atsiliepimas Mokiniui:
-                            <br> {{$atsiliepimoInformacija[0]->mokinysToNaudotojas->Vardas}} {{$atsiliepimoInformacija[0]->mokinysToNaudotojas->Pavarde}}
+                            <br> {{$atsiliepimoInformacija[0]->atsiliepimasToMokinys->mokinysToNaudotojas->Vardas}} {{$atsiliepimoInformacija[0]->atsiliepimasToMokinys->mokinysToNaudotojas->Pavarde}}
                         </label>
                     </div>
                     <div class="mb-4">
                         <label class="block text-gray-700 text-l font-bold mb-2">
                             Pavadinimas
                         </label>
-                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="pavadinimas" type="text">
+                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="pavadinimas" type="text" value="{{$atsiliepimoInformacija[0]->Pavadinimas}}">
                     </div>
                     <div class="mb-4">
                         <label class="block text-gray-700 text-l font-bold mb-2">
                             Atsiliepimo tekstas
                         </label>
-                        <textarea class="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-40 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white" name="textarea"></textarea>
+                        <textarea class="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-40 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white" name="textarea">{{$atsiliepimoInformacija[0]->Aprasymas}}</textarea>
                     </div>
                     <div class="grid place-items-center">
                         <button class="bg-green-700 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-                            pridėti atsiliepimą
+                            redaguoti atsiliepimą
                         </button>
                     </div>
                 </form>
