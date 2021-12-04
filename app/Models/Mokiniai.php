@@ -17,4 +17,5 @@ class Mokiniai extends Model
         return $this->belongsTo(Naudotojai::class, 'fk_Naudotojas', 'id_Naudotojas');
     }
 
+
 }

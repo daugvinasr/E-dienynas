@@ -1,10 +1,32 @@
 @extends('layouts.PagrindisLangasSablonas')
 
-
 @section('content')
-    <section class="container mx-auto p-6 rounded-10">
-        <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg px-2 py-2">
-            <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus ut placeat sint perspiciatis corrupti assumenda nihil explicabo excepturi voluptate voluptas. Iusto, nulla ex atque odit rerum voluptate obcaecati maiores! Dignissimos est, enim aspernatur possimus unde earum corporis ab? Voluptate aliquam est dignissimos commodi doloremque nobis vel at, perspiciatis quasi molestiae?</h1>
-        </div>
-    </section>
+    <div class="flex pt-20 min-h-screen">
+        <div class="col-span-12">
+            <table class="table text-gray-400  space-y-6 border-2 border-gray-500">
+                <thead class="bg-blue-600 text-white">
+                <tr>
+                    <th class="p-5">Pamoka</th>
+                    <th class="p-5 text-left">Balai</th>
+                    <th class="p-5 text-left">Vidurkis</th>
+                    <th class="p-5 text-left">Skaičiuoti bala</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($classData as $data)
+                    <tr class="bg-gray-200 lg:text-black">
+                        <td class="p-5 border-2 border-gray-500">{{$data -> Pavadinimas}}</td>
+                        <td class="p-5 border-2 border-gray-500">
+                        @foreach($data->pamokaTvarkarastis() as $tdata)
+                            @foreach($tdata->tvarkarastisIvertinimas() as $idata)
+                                @if($idata->fk_Mokinys==session('id_student'))
+                                   {{$idata -> Pazymys}}
+                                  @endif
+                            @endforeach
+                        @endforeach
+                        </td>
+                        <td class="p-5 border-2 border-gray-500">{{ App\Http\Controllers\UzsiemimoIvertinimasController::vidurkis($data) }}</td>
+                        <td class="p-5 border-2 border-gray-500"><a href="/skaiciuotibala?pamoka={{$data -> id_Pamoka }}">Skaičioti</a></td>
+                    </tr>
+                @endforeach
 @endsection

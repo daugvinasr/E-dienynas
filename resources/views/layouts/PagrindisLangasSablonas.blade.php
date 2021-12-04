@@ -96,7 +96,7 @@
                 </a>
             </li>
             <li>
-                <a title="Pažymiai" href="/pazymiai" class="h-16 px-6 flex items-center hover:text-white w-full">
+                <a title="Pažymiai" href="/balai" class="h-16 px-6 flex items-center hover:text-white w-full">
                     <i class="mx-auto">
                         <h1>Pažymiai</h1>
                     </i>
