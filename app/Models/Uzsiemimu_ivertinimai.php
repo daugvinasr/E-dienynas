@@ -10,4 +10,9 @@ class Uzsiemimu_ivertinimai extends Model
     use HasFactory;
     protected $table = 'Uzsiemimu_ivertinimai';
     public $timestamps = false;
+
+    public function iverinimasMokinys()
+    {
+        return $this->hasOne(Mokiniai::class, 'id_Mokinys', 'fk_Mokinys');
+    }
 }

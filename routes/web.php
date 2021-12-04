@@ -3,6 +3,7 @@
 use App\Http\Controllers\NamuDarbasController;
 use App\Http\Controllers\AtsiliepimasController;
 use App\Http\Controllers\NaudotojasController;
+use App\Http\Controllers\UzsiemimoIvertinimasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,5 +40,7 @@ Route::get('/registruotis', [NaudotojasController::class, 'rodytiRegistracija'])
 Route::post('/registruotis', [NaudotojasController::class, 'registruotis']);
 Route::get('/atsijungti', [NaudotojasController::class, 'atsijungti']);
 
-
+Route::get('/balai', [UzsiemimoIvertinimasController::class, 'rodytiPazymius']);
+Route::get('/skaiciuotibala', [UzsiemimoIvertinimasController::class, 'rodytiSkaiciavima']);
+Route::post('/skaiciuotibala', [UzsiemimoIvertinimasController::class, 'vidurkisplius']);
 
