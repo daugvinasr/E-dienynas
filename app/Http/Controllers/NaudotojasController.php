@@ -40,6 +40,7 @@ class NaudotojasController extends Controller
             {
                 $duomenys = Mokiniai::select('*')->where([['fk_Naudotojas', '=', $data[0]->id_Naudotojas]])->get();
                 Session::put('id_person', $duomenys[0]->id_Mokinys);
+                Session::put('id_klase', $duomenys[0]->fk_Klase);
             }
             else if ($data[0]->Role == 'mokytojas')
             {

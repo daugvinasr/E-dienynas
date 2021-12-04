@@ -40,7 +40,7 @@
                                     @if(session('role') == 'mokytojas')
                                         <a class="shadow-lg bg-green-700 hover:bg-green-600 text-white rounded-md py-2 px-2" href="/istrintiAtsiliepima/{{$data->id_Atsiliepimas}}/{{$id_mokinys}}">Ištrinti</a>
                                         <a class="shadow-lg bg-green-700 hover:bg-green-600 text-white rounded-md py-2 px-2" href="/rodytiRedagavimoAtsiliepimoForma/{{$data->id_Atsiliepimas}}/{{$id_mokinys}}">Redaguoti</a>
-
+                                        <a class="shadow-lg bg-green-700 hover:bg-green-600 text-white rounded-md py-2 px-2" href="/siustiAtsiliepima/{{$data->id_Atsiliepimas}}/{{$id_mokinys}}">Siusti Laiška su Atsiliepimu</a>
                                     @endif
 
                                 </td>

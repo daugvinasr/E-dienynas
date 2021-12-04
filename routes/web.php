@@ -4,6 +4,7 @@ use App\Http\Controllers\NamuDarbasController;
 use App\Http\Controllers\AtsiliepimasController;
 use App\Http\Controllers\NaudotojasController;
 use App\Http\Controllers\UzsiemimoIvertinimasController;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,6 +39,11 @@ Route::post('/rodytiRedagavimoAtsiliepimoForma/{id_atsiliepimas}/{id_mokinys}', 
 Route::get('/rodytiAtsiliepimuSarasa/{id_mokinys}', [AtsiliepimasController::class, 'rodytiAtsiliepimuSarasa']);
 Route::get('/rodytiAtsiliepima/{id_atsiliepimas}', [AtsiliepimasController::class, 'rodytiAtsiliepima']);
 Route::get('/istrintiAtsiliepima/{id_atsiliepimas}/{id_mokinys}', [AtsiliepimasController::class, 'istrintiAtsiliepima']);
+Route::get('/siustiAtsiliepima/{id_atsiliepimas}/{id_mokinys}', [AtsiliepimasController::class, 'siustiAtsiliepima']);
+
+
+
+
 //auth
 Route::get('/prisijungti', [NaudotojasController::class, 'rodytiPrisijungima']);
 Route::post('/prisijungti', [NaudotojasController::class, 'prisijungti']);

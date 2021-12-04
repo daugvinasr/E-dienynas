@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\EmailStack;
 use App\Models\Atsiliepimai;
 use App\Models\Mokiniai;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class AtsiliepimasController extends Controller
 {
@@ -85,4 +87,24 @@ class AtsiliepimasController extends Controller
         return redirect('/rodytiAtsiliepimuSarasa/'.$id_mokinys);
     }
 
+    public function siustiAtsiliepima($id_atsiliepimas,$id_mokinys)
+    {
+        $atsiliepimoInformacija = Atsiliepimai::select('*')
+            ->where([
+                ['id_Atsiliepimas', '=', $id_atsiliepimas],
+            ])
+            ->get();
+
+        $paruostaInformacija = array($atsiliepimoInformacija[0]->atsiliepimasToMokinys->mokinysToNaudotojas->Vardas,
+            $atsiliepimoInformacija[0]->atsiliepimasToMokinys->mokinysToNaudotojas->Pavarde,
+            $atsiliepimoInformacija[0]->atsiliepimasToMokytojas->mokytojasToNaudotojas->Vardas,
+            $atsiliepimoInformacija[0]->atsiliepimasToMokytojas->mokytojasToNaudotojas->Pavarde,
+            $atsiliepimoInformacija[0]->Pavadinimas,
+            $atsiliepimoInformacija[0]->Aprasymas,
+            $atsiliepimoInformacija[0]->Data);
+
+
+        Mail::to($atsiliepimoInformacija[0]->atsiliepimasToMokinys->mokinysToNaudotojas->El_Pastas)->send(new EmailStack($paruostaInformacija));
+        return redirect('/rodytiAtsiliepimuSarasa/'.$id_mokinys);
+    }
 }
