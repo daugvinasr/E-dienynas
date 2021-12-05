@@ -16,8 +16,4 @@ class Tvarkarascio_uzsiemimai extends Model
         return Uzsiemimu_ivertinimai::where('fk_Tvarkarascio_Uzsiemimas', $this->id_Tvarkarascio_Uzsiemimas)->get();
         //return $this->hasMany(Uzsiemimu_ivertinimai::class, 'id_Tvarkarascio_Uzsiemimas ', 'fk_Tvarkarascio_Uzsiemimas ');
     }
-    public function pamoka(){
-
-        return $this->belongsTo(Pamokos::class, 'fk_Pamoka', 'id_Pamoka');
-    }
 }
