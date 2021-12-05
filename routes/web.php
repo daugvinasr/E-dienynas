@@ -23,6 +23,17 @@ Route::get('/', function () {
 });
 
 
+Route::get('/bot', function ()
+{
+    \Illuminate\Support\Facades\Http::post('https://api.tlgr.org/bot5040648854:AAHs-u4W2gPPoy4KAbFYZUMYZMkyHPRiDLg/sendMessage',[
+        'chat_id' => -1001757183255,
+        'text' => 'daugvinasaaaaaaaaaaa'
+    ]);
+});
+
+
+
+
 Route::get('/namudarbai', [NamuDarbasController::class, 'showHomework']);
 Route::get('/pridetinamudarba', [NamuDarbasController::class, 'showAddHomework']);
 Route::post('/pridetinamudarba', [NamuDarbasController::class, 'addHomework']);
