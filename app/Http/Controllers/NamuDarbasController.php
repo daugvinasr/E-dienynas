@@ -6,11 +6,23 @@ use App\Models\Namu_darbai;
 use App\Models\Tvarkarascio_uzsiemimai;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class NamuDarbasController extends Controller
 {
     public function showHomework(){
-        $homeworkData = Namu_darbai::all();
+        if(session('role')=='mokinys') {
+            $homeworkData = DB::table('Namu_darbai')
+                ->leftJoin('Tvarkarascio_uzsiemimai', 'Namu_darbai.fk_Tvarkarascio_Uzsiemimas', '=', 'Tvarkarascio_uzsiemimai.id_Tvarkarascio_Uzsiemimas')
+                ->join('Pamokos','Tvarkarascio_uzsiemimai.fk_Pamoka','=','Pamokos.id_Pamoka')
+                ->where('Tvarkarascio_uzsiemimai.fk_Klase','=',session('id_klase'))
+                ->select('Namu_darbai.*','Pamokos.Pavadinimas as pamokaName')
+                ->get();
+        }
+        else{
+            $homeworkData=Namu_darbai::all();
+        }
+
         return view('NamuDarboSarasoLangas', ['homeworkData' => $homeworkData]);
     }
     public function showAddHomework(){
@@ -64,5 +76,6 @@ class NamuDarbasController extends Controller
         $homeworkUpdate->update(['Pavadinimas' =>request('Pavadinimas'),'Aprasymas'=>request('Aprasymas'),'Atlikti_Iki'=>request('Atlikti_Iki'),'fk_Tvarkarascio_Uzsiemimas'=>request('fk_Tvarkarascio_Uzsiemimas')]);
         return redirect('/namudarbai');
     }
+
 
 }

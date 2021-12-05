@@ -10,6 +10,7 @@
                 <table class="table text-gray-400  space-y-6 border-2 border-gray-500">
                     <thead class="bg-blue-600 text-white">
                     <tr>
+                        <th class="p-5">Dalykas</th>
                         <th class="p-5">Pavadinimas</th>
                         <th class="p-5 text-left">Įrašymo data</th>
                         <th class="p-5 text-left">Atlikti iki</th>
@@ -22,8 +23,9 @@
                     <tbody>
                     @foreach($homeworkData as $data)
                         <tr class="bg-gray-200 lg:text-black">
-                            <td class="p-5 border-2 border-gray-500">{{$data -> Pavadinimas}}</td>
-                            <td class="p-5 border-2 border-gray-500">{{$data -> Data}}</td>
+                           <td class="p-5 border-2 border-gray-500">{{$data -> pamokaName}}</td>
+                            <td class="p-5 border-2 border-gray-500">{{$data-> Pavadinimas}}</td>
+                            <td class="p-5 border-2 border-gray-500">{{$data-> Data}}</td>
                             <td class="p-5 border-2 border-gray-500">{{$data -> Atlikti_Iki}}</td>
                             <td class="p-5 border-2 border-gray-500 hover:bg-blue-300 hover:text-white font-bold"><a href="/placiaunamudarbas?id={{$data -> id_Namu_Darbas}}">Plačiau</a></td>
                             @if(session('role')=="mokytojas")
