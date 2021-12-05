@@ -23,17 +23,6 @@ Route::get('/', function () {
 });
 
 
-Route::get('/bot', function ()
-{
-    \Illuminate\Support\Facades\Http::post('https://api.tlgr.org/bot5040648854:AAHs-u4W2gPPoy4KAbFYZUMYZMkyHPRiDLg/sendMessage',[
-        'chat_id' => -1001757183255,
-        'text' => 'daugvinasaaaaaaaaaaa'
-    ]);
-});
-
-
-
-
 Route::get('/namudarbai', [NamuDarbasController::class, 'showHomework']);
 Route::get('/pridetinamudarba', [NamuDarbasController::class, 'showAddHomework']);
 Route::post('/pridetinamudarba', [NamuDarbasController::class, 'addHomework']);
@@ -41,6 +30,7 @@ Route::get('/placiaunamudarbas', [NamuDarbasController::class, 'moreHomework']);
 Route::get('/pasalintinamudarbas', [NamuDarbasController::class, 'removeHomework']);
 Route::get('/redaguotinamudarbas', [NamuDarbasController::class, 'showEditHomework']);
 Route::post('/redaguotinamudarbas', [NamuDarbasController::class, 'editHomework']);
+Route::get('/primintinamudarba', [NamuDarbasController::class, 'reminder']);
 
 Route::get('/rodytiAtsiliepimoForma/{id_mokinys}', [AtsiliepimasController::class, 'rodytiAtsiliepimoForma']);
 Route::post('/rodytiAtsiliepimoForma/{id_mokinys}', [AtsiliepimasController::class, 'irasytiAtsiliepimoForma']);

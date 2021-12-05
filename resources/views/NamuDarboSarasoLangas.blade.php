@@ -16,7 +16,7 @@
                         <th class="p-5 text-left">Atlikti iki</th>
                         <th class="p-5 text-left"></th>
                         @if(session('role')=="mokytojas")
-                            <th colspan="2" class="p-5 text-center">Veiksmai</th>
+                            <th colspan="3" class="p-5 text-center">Veiksmai</th>
                         @endif
                     </tr>
                     </thead>
@@ -31,6 +31,7 @@
                             @if(session('role')=="mokytojas")
                                 <td class="p-5 border-2 border-gray-500 text-orange"><a href="/redaguotinamudarbas?id={{$data -> id_Namu_Darbas}}">Redaguoti</a></td>
                                 <td class="p-5 border-2 border-gray-500"><a href="/pasalintinamudarbas?id={{$data -> id_Namu_Darbas}}">Pašalinti</a></td>
+                                <td class="p-5 border-2 border-gray-500"><a href="/primintinamudarba?id={{$data -> id_Namu_Darbas}}">Priminti</a></td>
                             @endif
                         </tr>
                     @endforeach

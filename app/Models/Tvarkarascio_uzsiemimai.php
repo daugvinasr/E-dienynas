@@ -21,4 +21,8 @@ class Tvarkarascio_uzsiemimai extends Model
         return $this->hasOne(Pamokos::class, 'id_Pamoka', 'fk_Pamoka');
     }
 
+    public function tvarkarastisToKlase()
+    {
+        return $this->belongsTo(Klases::class, 'fk_Klase', 'id_Klase');
+    }
 }

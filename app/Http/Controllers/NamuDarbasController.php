@@ -7,6 +7,7 @@ use App\Models\Tvarkarascio_uzsiemimai;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 
 class NamuDarbasController extends Controller
 {
@@ -20,9 +21,12 @@ class NamuDarbasController extends Controller
                 ->get();
         }
         else{
-            $homeworkData=Namu_darbai::all();
+            $homeworkData = DB::table('Namu_darbai')
+                ->leftJoin('Tvarkarascio_uzsiemimai', 'Namu_darbai.fk_Tvarkarascio_Uzsiemimas', '=', 'Tvarkarascio_uzsiemimai.id_Tvarkarascio_Uzsiemimas')
+                ->join('Pamokos','Tvarkarascio_uzsiemimai.fk_Pamoka','=','Pamokos.id_Pamoka')
+                ->select('Namu_darbai.*','Pamokos.Pavadinimas as pamokaName')
+                ->get();
         }
-
         return view('NamuDarboSarasoLangas', ['homeworkData' => $homeworkData]);
     }
     public function showAddHomework(){
@@ -76,6 +80,16 @@ class NamuDarbasController extends Controller
         $homeworkUpdate->update(['Pavadinimas' =>request('Pavadinimas'),'Aprasymas'=>request('Aprasymas'),'Atlikti_Iki'=>request('Atlikti_Iki'),'fk_Tvarkarascio_Uzsiemimas'=>request('fk_Tvarkarascio_Uzsiemimas')]);
         return redirect('/namudarbai');
     }
-
+    public function reminder(){
+        $id = request('id');
+        $homeworkUpdate = Namu_darbai::where('id_Namu_Darbas', $id)->get();
+        $temp = "Sveiki @".$homeworkUpdate[0]->namuDarbasToTvarkarastis->tvarkarastisToKlase->Pavadinimas."\n*".$homeworkUpdate[0]->namuDarbasToTvarkarastis->tvarkarastispamoka->Pavadinimas."*\n_".$homeworkUpdate[0]->Pavadinimas."_\n".$homeworkUpdate[0]->Aprasymas."\nIKI: ".$homeworkUpdate[0]->Atlikti_Iki;
+        \Illuminate\Support\Facades\Http::post('https://api.tlgr.org/bot5040648854:AAHs-u4W2gPPoy4KAbFYZUMYZMkyHPRiDLg/sendMessage',[
+            'chat_id' => -1001757183255,
+            'text' => $temp,
+            'parse_mode'=> 'Markdown'
+        ]);
+        return redirect('/namudarbai');
+    }
 
 }
