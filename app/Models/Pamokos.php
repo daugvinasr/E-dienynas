@@ -13,9 +13,12 @@ class Pamokos extends Model
 
     public function pamokaTvarkarastis()
     {
-       // return $this->hasMany(Tvarkarascio_uzsiemimai::class, 'id_Pamoka', 'fk_Pamoka');
-        return Tvarkarascio_uzsiemimai::where('fk_Pamoka', $this->id_Pamoka)->get();
+        return $this->hasMany(Tvarkarascio_uzsiemimai::class, 'fk_Pamoka', 'id_Pamoka');
     }
 
+    public function pamokamokytojas()
+    {
+        return $this->hasOne(Mokytojai::class, 'id_Mokytojas', 'fk_Mokytojas');
+    }
 
 }

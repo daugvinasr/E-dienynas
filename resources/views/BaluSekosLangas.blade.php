@@ -17,10 +17,15 @@
                     <tr class="bg-gray-200 lg:text-black">
                         <td class="p-5 border-2 border-gray-500">{{$data -> Pavadinimas}}</td>
                         <td class="p-5 border-2 border-gray-500">
-                        @foreach($data->pamokaTvarkarastis() as $tdata)
-                            @foreach($tdata->tvarkarastisIvertinimas() as $idata)
+                        @foreach($data->pamokaTvarkarastis as $tdata)
+                            @foreach($tdata->tvarkarastisIvertinimas as $idata)
                                 @if($idata->fk_Mokinys==session('id_student'))
-                                   {{$idata -> Pazymys}}
+                                        @if($idata->Pazymys!="")
+                                            <a href="/baloinformacija?id={{$idata -> id_Uzsiemimo_Ivertinimas }}">{{$idata -> Pazymys}}</a>
+                                        @endif
+                                        @if($idata->Lankomumas==1)
+                                            <a href="/ninformacija?id={{$idata -> id_Uzsiemimo_Ivertinimas }}">n</a>
+                                        @endif
                                   @endif
                             @endforeach
                         @endforeach

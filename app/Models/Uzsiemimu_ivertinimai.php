@@ -11,8 +11,8 @@ class Uzsiemimu_ivertinimai extends Model
     protected $table = 'Uzsiemimu_ivertinimai';
     public $timestamps = false;
 
-    public function iverinimasMokinys()
+    public function iverinimastvarkarastis()
     {
-        return $this->hasOne(Mokiniai::class, 'id_Mokinys', 'fk_Mokinys');
+        return $this->hasOne(Tvarkarascio_uzsiemimai::class, 'id_Tvarkarascio_Uzsiemimas', 'fk_Tvarkarascio_Uzsiemimas');
     }
 }

@@ -17,8 +17,8 @@
                 <tbody>
                     <tr class="bg-gray-200 lg:text-black">
                         <td class="p-5 border-2 border-gray-500">
-                            @foreach($classData[0]->pamokaTvarkarastis() as $tdata)
-                                @foreach($tdata->tvarkarastisIvertinimas() as $idata)
+                            @foreach($classData[0]->pamokaTvarkarastis as $tdata)
+                                @foreach($tdata->tvarkarastisIvertinimas as $idata)
                                     @if($idata->fk_Mokinys==session('id_student'))
                                         {{$idata -> Pazymys}}
                                     @endif
@@ -67,8 +67,11 @@
                                         Skaičiuoti
                                     </button>
                                 </td>
-                        <form>
+                        </form>
                         </td>
                     </tr>
                 </tbody>
+            </table>
+            <br>
+            <a href="/balai" class="ml-10 bg-teal-900 px-4 py-2 rounded text-white hover:bg-blue-500 text-sm">Atgal</a>
 @endsection

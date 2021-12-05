@@ -13,7 +13,12 @@ class Tvarkarascio_uzsiemimai extends Model
 
     public function tvarkarastisIvertinimas()
     {
-        return Uzsiemimu_ivertinimai::where('fk_Tvarkarascio_Uzsiemimas', $this->id_Tvarkarascio_Uzsiemimas)->get();
-        //return $this->hasMany(Uzsiemimu_ivertinimai::class, 'id_Tvarkarascio_Uzsiemimas ', 'fk_Tvarkarascio_Uzsiemimas ');
+        return $this->hasMany(Uzsiemimu_ivertinimai::class, 'fk_Tvarkarascio_Uzsiemimas', 'id_Tvarkarascio_Uzsiemimas');
     }
+
+    public function tvarkarastispamoka()
+    {
+        return $this->hasOne(Pamokos::class, 'id_Pamoka', 'fk_Pamoka');
+    }
+
 }

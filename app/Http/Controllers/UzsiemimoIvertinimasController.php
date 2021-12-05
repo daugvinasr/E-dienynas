@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Uzsiemimu_ivertinimai;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Models\Pamokos;
 use App\Models\Mokiniai;
+use phpDocumentor\Reflection\PseudoTypes\False_;
 
 class UzsiemimoIvertinimasController extends Controller
 {
@@ -26,12 +28,13 @@ class UzsiemimoIvertinimasController extends Controller
     public static  function vidurkis($data){
         $sk=0;
         $nr=0;
-        foreach($data->pamokaTvarkarastis() as $tdata) {
-            foreach ($tdata->tvarkarastisIvertinimas() as $idata){
+        foreach($data->pamokaTvarkarastis as $tdata) {
+            foreach ($tdata->tvarkarastisIvertinimas as $idata){
                 if ($idata->fk_Mokinys == session('id_student')) {
                     {
+                        if($idata->Pazymys!=""){
                         $sk+=$idata->Pazymys;
-                        $nr++;
+                        $nr++;}
                     }
                 }
             }
@@ -46,12 +49,13 @@ class UzsiemimoIvertinimasController extends Controller
         $classData = Pamokos::where('id_Pamoka', $id)->get();//where('id_Pamoka',$id);
         $sk=0;
         $nr=0;
-        foreach($classData[0]->pamokaTvarkarastis() as $tdata) {
-            foreach ($tdata->tvarkarastisIvertinimas() as $idata){
+        foreach($classData[0]->pamokaTvarkarastis as $tdata) {
+            foreach ($tdata->tvarkarastisIvertinimas as $idata){
                 if ($idata->fk_Mokinys == session('id_student')) {
                     {
+                        if($idata->Pazymys!=""){
                         $sk+=$idata->Pazymys;
-                        $nr++;
+                        $nr++;}
                     }
                 }
             }
@@ -75,5 +79,31 @@ class UzsiemimoIvertinimasController extends Controller
             return view('BaluSkaiciuoklesLangas', ['classData' => $classData], ['vid' => $vid]);
         }
         return  view('BaluSkaiciuoklesLangas', ['classData' => $classData], ['vid' => $vid]);
+    }
+
+    public function rodytiPazymi(){
+        $id=request('id');
+        $markData = Uzsiemimu_ivertinimai::where('id_Uzsiemimo_Ivertinimas', $id)->get();
+        $n=0;
+        return  view('PazymioLangas', ['markData' => $markData], ['n' => $n]);
+    }
+
+    public function rodytiN(){
+        $id=request('id');
+        $markData = Uzsiemimu_ivertinimai::where('id_Uzsiemimo_Ivertinimas', $id)->get();
+        $n=1;
+        return  view('PazymioLangas', ['markData' => $markData],['n' => $n]);
+    }
+
+    public function istrintiPazymi($id_pazymys)
+    {
+        Uzsiemimu_ivertinimai::where('id_Uzsiemimo_Ivertinimas','=',$id_pazymys)->delete();
+        return redirect('/balai');
+    }
+
+    public function keistiPazymi(){
+        $id=request('id');
+        Uzsiemimu_ivertinimai::where('id_Uzsiemimo_Ivertinimas', $id)->update(['Pazymys' => request('balas')]);
+        return redirect('/balai');
     }
 }
