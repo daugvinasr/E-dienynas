@@ -10,4 +10,5 @@ class Klases extends Model
     use HasFactory;
     protected $table = 'Klases';
     public $timestamps = false;
+
 }

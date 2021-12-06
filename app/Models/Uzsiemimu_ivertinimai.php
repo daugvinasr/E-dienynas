@@ -15,4 +15,9 @@ class Uzsiemimu_ivertinimai extends Model
     {
         return $this->hasOne(Tvarkarascio_uzsiemimai::class, 'id_Tvarkarascio_Uzsiemimas', 'fk_Tvarkarascio_Uzsiemimas');
     }
+
+    public function iverinimasMokinys()
+    {
+        return $this->hasOne(Mokiniai::class, 'id_Mokinys', 'fk_Mokinys');
+    }
 }

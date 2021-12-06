@@ -15,4 +15,9 @@ class Mokytojai extends Model
     {
         return $this->belongsTo(Naudotojai::class, 'fk_Naudotojas', 'id_Naudotojas');
     }
+
+    public function mokytojasPamoka()
+    {
+        return $this->hasMany(Pamokos::class, 'fk_Mokytojas', 'id_Mokytojas');
+    }
 }

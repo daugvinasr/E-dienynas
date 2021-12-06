@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Klases;
+use App\Models\Mokytojai;
+use App\Models\Tvarkarascio_uzsiemimai;
 use App\Models\Uzsiemimu_ivertinimai;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Models\Pamokos;
 use App\Models\Mokiniai;
-use phpDocumentor\Reflection\PseudoTypes\False_;
 
 class UzsiemimoIvertinimasController extends Controller
 {
@@ -98,12 +100,57 @@ class UzsiemimoIvertinimasController extends Controller
     public function istrintiPazymi($id_pazymys)
     {
         Uzsiemimu_ivertinimai::where('id_Uzsiemimo_Ivertinimas','=',$id_pazymys)->delete();
-        return redirect('/balai');
+        return redirect('/rodytiivercioforma');
+    }
+
+    public function istrintiLankomuma($id_pazymys){
+        $mark = Uzsiemimu_ivertinimai::where('id_Uzsiemimo_Ivertinimas','=',$id_pazymys)->get();
+        if($mark[0]->Pazymys!=""){
+            Uzsiemimu_ivertinimai::where('id_Uzsiemimo_Ivertinimas', $id_pazymys)->update(['Lankomumas' => "0"]);
+        }else{
+            Uzsiemimu_ivertinimai::where('id_Uzsiemimo_Ivertinimas','=',$id_pazymys)->delete();
+        }
+        return redirect('/rodytiivercioforma');
     }
 
     public function keistiPazymi(){
         $id=request('id');
         Uzsiemimu_ivertinimai::where('id_Uzsiemimo_Ivertinimas', $id)->update(['Pazymys' => request('balas')]);
-        return redirect('/balai');
+        return redirect('/rodytiivercioforma');
+    }
+
+    public function rodytiforma()
+    {
+        $t = 0;
+        $teacherData = Mokytojai::where('id_Mokytojas', session("id_person"))->get();
+        return view('UzsiemimoIvertinimoForma', ['teacherData' => $teacherData], ['t'=>$t]);
+    }
+
+    public function pridetiPazimi(){
+        $t = 0;
+        $teacherData = Mokytojai::where('id_Mokytojas', session("id_person"))->get();
+        if(request('action')=="class") {
+            $t = request('pamoka');
+            $data = Tvarkarascio_uzsiemimai::where('id_Tvarkarascio_Uzsiemimas', $t )->get();
+            $uzData = Mokiniai::where('fk_Klase', $data[0]->fk_Klase)->get();
+            return view('UzsiemimoIvertinimoForma', ['teacherData' => $teacherData], ['uzData' => $uzData, 't'=>$t] );
+        }
+        if(request('action')=="add") {
+            $mark = new Uzsiemimu_ivertinimai();
+            $mark->Pazymys = request('balas');
+            $mark->Lankomumas = request('lankomumas');
+            $mark->fk_Mokinys = request('mokinys');
+            $mark->fk_Tvarkarascio_Uzsiemimas = request('uzsiemimas');
+            $mark->save();
+            $t=0;
+            return view('UzsiemimoIvertinimoForma', ['teacherData' => $teacherData],['t'=>$t]);
+        }
+        if(request('action')=="marks") {
+            $t=-1;
+            $data = Tvarkarascio_uzsiemimai::where('id_Tvarkarascio_Uzsiemimas', request('pamoka') )->get();
+            $uzData = Mokiniai::where('fk_Klase', $data[0]->fk_Klase)->get();
+            return view('UzsiemimoIvertinimoForma', ['teacherData' => $teacherData],['uzData' => $uzData,'t'=>$t, 'data'=>$data]);
+        }
+        return view('UzsiemimoIvertinimoForma', ['teacherData' => $teacherData],['t'=>$t]);
     }
 }

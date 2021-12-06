@@ -58,4 +58,7 @@ Route::post('/skaiciuotibala', [UzsiemimoIvertinimasController::class, 'vidurkis
 Route::get('/baloinformacija', [UzsiemimoIvertinimasController::class, 'rodytiPazymi']);
 Route::get('/ninformacija', [UzsiemimoIvertinimasController::class, 'rodytiN']);
 Route::get('/istrintiPazymi/{id}', [UzsiemimoIvertinimasController::class, 'istrintiPazymi']);
+Route::get('/istrintiLankomuma/{id}', [UzsiemimoIvertinimasController::class, 'istrintiLankomuma']);
 Route::post('/baloinformacija', [UzsiemimoIvertinimasController::class, 'keistiPazymi']);
+Route::get('/rodytiivercioforma', [UzsiemimoIvertinimasController::class, 'rodytiforma']);
+Route::post('/rodytiivercioforma', [UzsiemimoIvertinimasController::class, 'pridetiPazimi']);

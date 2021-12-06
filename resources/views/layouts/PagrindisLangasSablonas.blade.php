@@ -95,6 +95,7 @@
                     </i>
                 </a>
             </li>
+            @if(session('role') == 'mokinys')
             <li>
                 <a title="Pažymiai" href="/balai" class="h-16 px-6 flex items-center hover:text-white w-full">
                     <i class="mx-auto">
@@ -102,6 +103,17 @@
                     </i>
                 </a>
             </li>
+            @endif
+            @if(session('role') == 'mokytojas')
+                <li>
+                    <a title="Pažymiai" href="/rodytiivercioforma" class="h-16 px-6 flex items-center hover:text-white w-full">
+                        <i class="mx-auto">
+                            <h1>Vertinimas</h1>
+                        </i>
+                    </a>
+                </li>
+            @endif
+
             <li>
                 <a title="Tvarkaraštis" href="/tvarkarastis" class="h-16 px-6 flex items-center hover:text-white w-full">
                     <i class="mx-auto">
