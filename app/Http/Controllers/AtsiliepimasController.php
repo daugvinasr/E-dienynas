@@ -27,6 +27,12 @@ class AtsiliepimasController extends Controller
 
     public function irasytiAtsiliepimoForma($id_mokinys)
     {
+        request()->validate([
+            //naudotojo duomenys
+            'pavadinimas' => 'required|max:254',
+            'textarea' => 'required|max:254',
+        ]);
+
         $atsiliepimas = new Atsiliepimai();
         $atsiliepimas->Pavadinimas = request('pavadinimas');
         $atsiliepimas->Aprasymas = request('textarea');
@@ -34,18 +40,55 @@ class AtsiliepimasController extends Controller
         $atsiliepimas->fk_Mokytojas = session('id_person');
         $atsiliepimas->fk_Mokinys = $id_mokinys;
         $atsiliepimas->save();
-        return redirect('/rodytiAtsiliepimuSarasa/'.$id_mokinys);
+        return redirect('/rodytiAtsiliepimuSarasa');
     }
 
-    public function rodytiAtsiliepimuSarasa($id_mokinys)
+    public function rodytiAtsiliepimuSarasa()
+    {
+        if (session('role') == 'mokinys')
+        {
+            $atsiliepimoInformacija = Atsiliepimai::select('*')
+                ->where([
+                    ['fk_Mokinys', '=', session('id_person')],
+                ])
+                ->get();
+            return view('AtsiliepimuSarasoLangas', ['atsiliepimoInformacija' => $atsiliepimoInformacija]);
+        }
+
+        if (session('role') == 'mokytojas')
+        {
+            $mokiniuInformacija = Mokiniai::all();
+            if (sizeof($mokiniuInformacija) > 0)
+            {
+                return view('AtsiliepimuSarasoLangas', ['mokiniuInformacija' => $mokiniuInformacija]);
+            }
+            else
+            {
+                return redirect('/');
+            }
+
+        }
+        return redirect('/');
+    }
+
+    public function rodytiAtsiliepimuMokytojui()
     {
         $atsiliepimoInformacija = Atsiliepimai::select('*')
             ->where([
-                ['fk_Mokinys', '=', $id_mokinys],
+                ['fk_Mokinys', '=', request('selectedStudentas')],
             ])
             ->get();
 
-        return view('AtsiliepimuSarasoLangas', ['atsiliepimoInformacija' => $atsiliepimoInformacija, 'id_mokinys' => $id_mokinys]);
+        if (!$atsiliepimoInformacija->isEmpty())
+        {
+            return view('AtsiliepimuSarasoLangas', ['atsiliepimoInformacija' => $atsiliepimoInformacija, 'studentoID' => request('selectedStudentas')]);
+
+        }
+        else
+        {
+            return redirect('/rodytiAtsiliepimoForma/'.request('selectedStudentas'));
+        }
+
     }
 
     public function rodytiAtsiliepima($id_atsiliepimas)
@@ -63,14 +106,16 @@ class AtsiliepimasController extends Controller
         }
     }
 
-    public function istrintiAtsiliepima($id_atsiliepimas,$id_mokinys)
+    public function istrintiAtsiliepima($id_atsiliepimas)
     {
         Atsiliepimai::where('id_Atsiliepimas','=',$id_atsiliepimas)->delete();
-        return redirect('/rodytiAtsiliepimuSarasa/'.$id_mokinys);
+        return redirect('/rodytiAtsiliepimuSarasa');
     }
 
-    public function rodytiRedagavimoAtsiliepimoForma($id_atsiliepimas,$id_mokinys)
+    public function rodytiRedagavimoAtsiliepimoForma($id_atsiliepimas)
     {
+
+
         $atsiliepimoInformacija = Atsiliepimai::select('*')
             ->where([
                 ['id_Atsiliepimas', '=', $id_atsiliepimas],
@@ -80,14 +125,20 @@ class AtsiliepimasController extends Controller
         return view('AtsiliepimoRedagavimoForma', ['atsiliepimoInformacija' => $atsiliepimoInformacija]);
     }
 
-    public function irasytiRedagavimoAtsiliepimoForma($id_atsiliepimas,$id_mokinys)
+    public function irasytiRedagavimoAtsiliepimoForma($id_atsiliepimas)
     {
+        request()->validate([
+            //naudotojo duomenys
+            'pavadinimas' => 'required|max:254',
+            'textarea' => 'required|max:254',
+        ]);
+
         $atsiliepimas = Atsiliepimai::where('id_Atsiliepimas',$id_atsiliepimas);
         $atsiliepimas->update(['Pavadinimas' => request('pavadinimas'),'Aprasymas' => request('textarea'),'Data' => date('Y-m-d'),'fk_Mokytojas' => session('id_person')]);
-        return redirect('/rodytiAtsiliepimuSarasa/'.$id_mokinys);
+        return redirect('/rodytiAtsiliepimuSarasa/');
     }
 
-    public function siustiAtsiliepima($id_atsiliepimas,$id_mokinys)
+    public function siustiAtsiliepima($id_atsiliepimas)
     {
         $atsiliepimoInformacija = Atsiliepimai::select('*')
             ->where([
@@ -105,6 +156,6 @@ class AtsiliepimasController extends Controller
 
 
         Mail::to($atsiliepimoInformacija[0]->atsiliepimasToMokinys->mokinysToNaudotojas->El_Pastas)->send(new EmailStack($paruostaInformacija));
-        return redirect('/rodytiAtsiliepimuSarasa/'.$id_mokinys);
+        return redirect('/rodytiAtsiliepimuSarasa/');
     }
 }

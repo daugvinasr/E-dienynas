@@ -25,6 +25,11 @@
                         <textarea class="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-40 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white" name="textarea"></textarea>
                     </div>
                     <div class="grid place-items-center">
+                        <div class="grid place-items-center p-2">
+                            @if($errors->any())
+                                <h4>{{$errors->first()}}</h4>
+                            @endif
+                        </div>
                         <button class="bg-green-700 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                             pridėti atsiliepimą
                         </button>

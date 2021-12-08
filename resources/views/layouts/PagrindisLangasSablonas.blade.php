@@ -76,7 +76,6 @@
     <!-- section body side nav -->
     <nav aria-label="side bar" aria-orientation="vertical" class="flex-none flex flex-col items-center text-center bg-teal-900 text-gray-400 border-r">
         <div class="h-16 flex items-center w-full">
-            <img class="h-8 w-8 mx-auto" src="https://i.imgur.com/q7dPshl.png"/>
         </div>
 
         <ul>
@@ -90,7 +89,7 @@
             <li>
             @if(session('role') == 'mokinys')
             <li>
-                <a title="Atsiliepimai" href="/rodytiAtsiliepimuSarasa/{{session('id_person')}}" class="h-16 px-6 flex items-center hover:text-white w-full">
+                <a title="Atsiliepimai" href="/rodytiAtsiliepimuSarasa" class="h-16 px-6 flex items-center hover:text-white w-full">
                     <i class="mx-auto">
                         <h1>Atsiliepimai</h1>
                     </i>
@@ -119,6 +118,14 @@
                     </i>
                 </a>
             </li>
+                <li>
+                    <a title="Tvarkaraštis" href="/tvarkarastis" class="h-16 px-6 flex items-center hover:text-white w-full">
+                        <i class="mx-auto">
+                            <h1>Tvarkaraštis</h1>
+                        </i>
+                    </a>
+                </li>
+
             @endif
             @if(session('role') == 'mokytojas')
                 <li>
@@ -128,15 +135,16 @@
                         </i>
                     </a>
                 </li>
+                <li>
+                    <a title="Atsiliepimai" href="/rodytiAtsiliepimuSarasa" class="h-16 px-6 flex items-center hover:text-white w-full">
+                        <i class="mx-auto">
+                            <h1>Atsiliepimai</h1>
+                        </i>
+                    </a>
+                </li>
             @endif
 
-            <li>
-                <a title="Tvarkaraštis" href="/tvarkarastis" class="h-16 px-6 flex items-center hover:text-white w-full">
-                    <i class="mx-auto">
-                        <h1>Tvarkaraštis</h1>
-                    </i>
-                </a>
-            </li>
+
             <li>
                 <a title="Namų darbai" href="/namudarbai" class="h-16 px-6 flex items-center hover:text-white w-full">
                     <i class="mx-auto">
@@ -169,7 +177,7 @@
             @if(session('id_user') != null)
                     <a href="/atsijungti" class="block px-5 py-4 text-white bg-gray-500 shadow-lg rounded-lg">Atsijungti</a>
                 <a class="text-white">XD</a>
-                    <a href="#" class="block px-5 py-4 text-white bg-gray-500 shadow-lg rounded-lg">{{session('role')}}</a>
+                    <a href="#" class="block px-5 py-4 text-white bg-gray-500 shadow-lg rounded-lg">{{session('role')}} {{session('vardas')}} {{session('pavarde')}}</a>
             @endif
 
         </div>

@@ -36,13 +36,14 @@ Route::get('/primintinamudarba', [NamuDarbasController::class, 'reminder']);
 
 Route::get('/rodytiAtsiliepimoForma/{id_mokinys}', [AtsiliepimasController::class, 'rodytiAtsiliepimoForma']);
 Route::post('/rodytiAtsiliepimoForma/{id_mokinys}', [AtsiliepimasController::class, 'irasytiAtsiliepimoForma']);
-Route::get('/rodytiRedagavimoAtsiliepimoForma/{id_atsiliepimas}/{id_mokinys}', [AtsiliepimasController::class, 'rodytiRedagavimoAtsiliepimoForma']);
-Route::post('/rodytiRedagavimoAtsiliepimoForma/{id_atsiliepimas}/{id_mokinys}', [AtsiliepimasController::class, 'irasytiRedagavimoAtsiliepimoForma']);
+Route::get('/rodytiRedagavimoAtsiliepimoForma/{id_atsiliepimas}', [AtsiliepimasController::class, 'rodytiRedagavimoAtsiliepimoForma']);
+Route::post('/rodytiRedagavimoAtsiliepimoForma/{id_atsiliepimas}', [AtsiliepimasController::class, 'irasytiRedagavimoAtsiliepimoForma']);
 
-Route::get('/rodytiAtsiliepimuSarasa/{id_mokinys}', [AtsiliepimasController::class, 'rodytiAtsiliepimuSarasa']);
+Route::get('/rodytiAtsiliepimuSarasa', [AtsiliepimasController::class, 'rodytiAtsiliepimuSarasa']);
+Route::post('/rodytiAtsiliepimuSarasa', [AtsiliepimasController::class, 'rodytiAtsiliepimuMokytojui']);
 Route::get('/rodytiAtsiliepima/{id_atsiliepimas}', [AtsiliepimasController::class, 'rodytiAtsiliepima']);
-Route::get('/istrintiAtsiliepima/{id_atsiliepimas}/{id_mokinys}', [AtsiliepimasController::class, 'istrintiAtsiliepima']);
-Route::get('/siustiAtsiliepima/{id_atsiliepimas}/{id_mokinys}', [AtsiliepimasController::class, 'siustiAtsiliepima']);
+Route::get('/istrintiAtsiliepima/{id_atsiliepimas}', [AtsiliepimasController::class, 'istrintiAtsiliepima']);
+Route::get('/siustiAtsiliepima/{id_atsiliepimas}', [AtsiliepimasController::class, 'siustiAtsiliepima']);
 
 Route::get('/pamokos', [\App\Http\Controllers\PamokaController::class, 'index']);
 Route::post('/pamokos', [\App\Http\Controllers\PamokaController::class, 'irasytiPamoka']);
