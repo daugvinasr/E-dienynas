@@ -7,6 +7,7 @@ use App\Models\Mokiniai;
 use App\Models\Mokytojai;
 use App\Models\Naudotojai;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
@@ -17,7 +18,12 @@ class NaudotojasController extends Controller
         return view('PrisijungimoLangas');
     }
 
-    public function rodytiRegistracija()
+    public function paskutinisRegistruotasNaudotojas()
+    {
+        return DB::table('Naudotojai')->latest('id_Naudotojas')->first();
+    }
+
+    private function rodytiRegistracija()
     {
         return view('RegistracijosLangas');
     }
@@ -61,36 +67,36 @@ class NaudotojasController extends Controller
     public function registruotis()
     {
         request()->validate([
-            'vardas' => 'required|max:254',
-            'pavarde' => 'required|max:254',
-            'amzius' => 'required|max:254',
-            'miestas' => 'required|max:254',
-            'telefonoNumeris' => 'required|max:254',
-            'asmensKodas' => 'required|max:254',
-            'gimimoData' => 'required',
-            'lytis' => 'required|max:254',
-            'zodiakoZenklas' => 'required|max:254',
-            'pastoKodas' => 'required|max:254',
-            'gatve' => 'required|max:254',
+            'Vardas' => 'required|max:254',
+            'Pavarde' => 'required|max:254',
+            'Amzius' => 'required|max:254',
+            'Miestas' => 'required|max:254',
+            'Telefono_Numeris' => 'required|max:254',
+            'Asmens_Kodas' => 'required|max:254',
+            'Gimimo_Data' => 'required',
+            'Lytis' => 'required|max:254',
+            'Zodiako_Zenklas' => 'required|max:254',
+            'Pasto_Kodas' => 'required|max:254',
+            'Gatve' => 'required|max:254',
             'El_Pastas' => 'required|email|unique:Naudotojai',
-            'password' => 'required|max:254'
+            'Slaptazodis' => 'required|max:254'
         ]);
 
         $naudotojas = new Naudotojai();
-        $naudotojas->Vardas = request('vardas');
-        $naudotojas->Pavarde = request('pavarde');
-        $naudotojas->Amzius = request('amzius');
-        $naudotojas->Miestas = request('miestas');
-        $naudotojas->Telefono_Numeris = request('telefonoNumeris');
-        $naudotojas->Asmens_Kodas = request('asmensKodas');
-        $naudotojas->Gimimo_Data = request('gimimoData');
-        $naudotojas->Lytis = request('lytis');
-        $naudotojas->Zodiako_Zenklas = request('zodiakoZenklas');
-        $naudotojas->Pasto_Kodas = request('pastoKodas');
-        $naudotojas->Gatve = request('gatve');
-        $naudotojas->Galimybiu_Pasas = request('gpasas');
+        $naudotojas->Vardas = request('Vardas');
+        $naudotojas->Pavarde = request('Pavarde');
+        $naudotojas->Amzius = request('Amzius');
+        $naudotojas->Miestas = request('Miestas');
+        $naudotojas->Telefono_Numeris = request('Telefono_Numeris');
+        $naudotojas->Asmens_Kodas = request('Asmens_Kodas');
+        $naudotojas->Gimimo_Data = request('Gimimo_Data');
+        $naudotojas->Lytis = request('Lytis');
+        $naudotojas->Zodiako_Zenklas = request('Zodiako_Zenklas');
+        $naudotojas->Pasto_Kodas = request('Pasto_Kodas');
+        $naudotojas->Gatve = request('Gatve');
+        $naudotojas->Galimybiu_Pasas = request('Galimybiu_Pasas');
         $naudotojas->El_Pastas = request('El_Pastas');
-        $naudotojas->Slaptazodis = Hash::make(request('password'));
+        $naudotojas->Slaptazodis = Hash::make(request('Slaptazodis'));
         $naudotojas->Role = 'svecias';
         $naudotojas->save();
 
@@ -102,5 +108,123 @@ class NaudotojasController extends Controller
         Session::flush();
         return redirect('/');
     }
+    public function rodytiNaudotojus(){
+            $userData = DB::table('Naudotojai')
+                ->select('Naudotojai.*')
+                ->get();
+        return view('NaudotojuSarasoLangas', ['userData' => $userData]);
+    }
+    public function placiauNaudotojas(){
+        $id = request('id');
+        $userData = Naudotojai::where('id_Naudotojas', $id)->get();
+        return view('NaudotojoInformacijosLangas', ['userData' => $userData]);
+    }
+    public function pasalintiNaudotoja(){
+        $id = request('id');
+        Naudotojai::where('id_Naudotojas', $id)->delete();
+        return redirect('/naudotojai');
+    }
+    public function rodytiNaudotojuPridejima(){
+        $userData = Naudotojai::all();
+        return view('NaudotojuForma', ['userData' => $userData]);
+    }
+    public function rodytiRedaguotiNaudotoja(){
+        $id = request('id');
+        $userData = Naudotojai::where('id_Naudotojas', $id)->get();
+        return view('NaudotojoRedagavimoForma', ['userData' => $userData]);
+    }
+    public function redaguotiNaudotoja(){
+        request()->validate([
+            'Vardas' => 'required|max:254',
+            'Pavarde' => 'required|max:254',
+            'Amzius' => 'required|max:254',
+            'Role' => 'required',
+            'Miestas' => 'required|max:254',
+            'Telefono_Numeris' => 'required|max:254',
+            'Asmens_Kodas' => 'required|max:254',
+            'Gimimo_Data' => 'required',
+            'Lytis' => 'required|max:254',
+            'Zodiako_Zenklas' => 'required|max:254',
+            'Pasto_Kodas' => 'required|max:254',
+            'Gatve' => 'required|max:254',
+            'El_Pastas' => 'required|email|unique:Naudotojai'
+        ]);
+        $id = request('id');
+        $userUpdate = Naudotojai::where('id_Naudotojas', $id);
+        $userUpdate->update([
+            'Vardas' =>request('vardas'),
+            'Pavarde'=>request('pavarde'),
+            'Amzius'=>request('amzius'),
+            'Role'=>request('role'),
+            'Miestas'=>request('miestas'),
+            'Galimybiu_Pasas' => request('Galimybiu_Pasas'),
+            'Telefono_Numeris'=>request('Telefono_Numeris'),
+            'Asmens_Kodas'=>request('Asmens_Kodas'),
+            'Gimimo_Data'=>request('Gimimo_Data'),
+            'Lytis'=>request('Lytis'),
+            'Zodiako_Zenklas'=>request('Zodiako_Zenklas'),
+            'Pasto_Kodas'=>request('Pasto_Kodas'),
+            'Gatve'=>request('Gatve'),
+            'El_Pastas'=>request('El_Pastas')]);
+        return redirect('/naudotojai');
+    }
 
+    public function rodytiPridetiMokytoja(){
+        $userData = Naudotojai::all();
+        return view('MokytojoPridejimoForma', ['userData' => $userData]);
+    }
+    public function pridetiMokytoja(){
+        request()->validate([
+            //naudotojo duomenys
+            'Vardas' => 'required|max:254',
+            'Pavarde' => 'required|max:254',
+            'Amzius' => 'required|max:254',
+            'Miestas' => 'required|max:254',
+            'Telefono_Numeris' => 'required|max:254',
+            'Asmens_Kodas' => 'required|max:254',
+            'Gimimo_Data' => 'required',
+            'Lytis' => 'required|max:254',
+            'Zodiako_Zenklas' => 'required|max:254',
+            'Pasto_Kodas' => 'required|max:254',
+            'Gatve' => 'required|max:254',
+            'El_Pastas' => 'required|email|unique:Naudotojai',
+            'Slaptazodis' => 'required|max:254',
+            //mokytojo duomenys
+            'Alga' => 'required|max:254',
+            'Banko_Saskaita' => 'required|max:254',
+            'Darbo_Patirtis' => 'required|max:254',
+            'Issilavinimas' => 'required|max:254',
+            'Idarbinimo_Data' => 'required|max:254',
+            'Kabineto_NR' => 'required|max:254',
+            'Ar_Pavaduotoja' => 'required|max:254'
+        ]);
+        $naudotojas = new Naudotojai();
+        $naudotojas->Vardas = request('Vardas');
+        $naudotojas->Pavarde = request('Pavarde');
+        $naudotojas->Amzius = request('Amzius');
+        $naudotojas->Miestas = request('Miestas');
+        $naudotojas->Telefono_Numeris = request('Telefono_Numeris');
+        $naudotojas->Asmens_Kodas = request('Asmens_Kodas');
+        $naudotojas->Gimimo_Data = request('Gimimo_Data');
+        $naudotojas->Lytis = request('Lytis');
+        $naudotojas->Zodiako_Zenklas = request('Zodiako_Zenklas');
+        $naudotojas->Pasto_Kodas = request('Pasto_Kodas');
+        $naudotojas->Gatve = request('Gatve');
+        $naudotojas->Galimybiu_Pasas = request('Galimybiu_Pasas');
+        $naudotojas->El_Pastas = request('El_Pastas');
+        $naudotojas->Slaptazodis = Hash::make(request('Slaptazodis'));
+        $naudotojas->Role = 'mokytojas';
+        $naudotojas->save();
+
+        $mokytojas = new Mokytojai();
+        $mokytojas->Alga = request('Alga');
+        $mokytojas->Banko_Saskaita = request('Banko_Saskaita');
+        $mokytojas->Darbo_Patirtis = request('Darbo_Patirtis)');
+        $mokytojas->Idarbinimo_Data= request('Idarbinimo_Data)');
+        $mokytojas->Kabineto_NR = request('Kabineto_NR');
+        $mokytojas->Ar_Pavaduotoja = request('Ar_Pavaduotoja');
+        $mokytojas->fk_Naudotojas = $this->paskutinisRegistruotasNaudotojas();
+        $mokytojas->save();
+        return redirect('/naudotojai');
+    }
 }

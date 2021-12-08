@@ -62,3 +62,13 @@ Route::get('/istrintiLankomuma/{id}', [UzsiemimoIvertinimasController::class, 'i
 Route::post('/baloinformacija', [UzsiemimoIvertinimasController::class, 'keistiPazymi']);
 Route::get('/rodytiivercioforma', [UzsiemimoIvertinimasController::class, 'rodytiforma']);
 Route::post('/rodytiivercioforma', [UzsiemimoIvertinimasController::class, 'pridetiPazimi']);
+
+Route::get('/naudotojai', [NaudotojasController::class, 'rodytiNaudotojus']);
+Route::get('/pridetinaudotoja', [NaudotojasController::class, 'rodytiRegistracija']);
+Route::post('/pridetinaudotoja', [NaudotojasController::class, 'registruotis']);
+Route::get('/pridetimokytoja', [NaudotojasController::class, 'rodytiPridetiMokytoja']);
+Route::post('/pridetimokytoja', [NaudotojasController::class, 'pridetiMokytoja']);
+Route::get('/placiaunaudotojas', [NaudotojasController::class, 'placiauNaudotojas']);
+Route::get('/pasalintinaudotoja', [NaudotojasController::class, 'pasalintiNaudotoja']);
+Route::get('/redaguotinaudotoja', [NaudotojasController::class, 'rodytiRedaguotiNaudotoja']);
+Route::post('/redaguotinaudotoja', [NaudotojasController::class, 'redaguotiNaudotoja']);

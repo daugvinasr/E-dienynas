@@ -33,20 +33,18 @@
                     @enderror
                 </div>
                 <div class="mb-4">
+                    <label for="slaptazodis" class="block text-gray-800 font-bold">Slaptažodis:</label>
+                    <input name="Slaptazodis" type="password"  class="w-full border border-gray-300 py-2 pl-3 rounded mt-2 outline-none focus:ring-indigo-600 :ring-indigo-600" />
+                    @error('Slaptazodis')
+                    {{ $message }}
+                    @enderror
+                </div>
+                <div class="mb-4">
                     <label for="Miestas" class="block text-gray-800 font-bold">Miestas:</label>
                     <input name="Miestas" type="text"  class="w-full border border-gray-300 py-2 pl-3 rounded mt-2 outline-none focus:ring-indigo-600 :ring-indigo-600" />
                     @error('Miestas')
                     {{ $message }}
                     @enderror
-                </div>
-                <div class="mb-4">
-                    <label for="Role" class="block text-gray-800 font-bold">Rolė:</label>
-                    <select name="Role">
-                        <option value="mokinys">Mokinys</option>
-                        <option value="mokytojas">Mokytojas</option>
-                        <option value="administratorius">Administratorius</option>
-                        <option value="svecias">Svečias</option>
-                    </select>
                 </div>
                 <div class="mb-4">
                     <label for="Telefono_Numeris" class="block text-gray-800 font-bold">Telefono numeris:</label>
@@ -105,6 +103,49 @@
                     @enderror
                 </div>
 
+
+                <div class="mb-4">
+                    <label for="Alga" class="block text-gray-800 font-bold">Alga:</label>
+                    <input name="Alga" type="number"  class="w-full border border-gray-300 py-2 pl-3 rounded mt-2 outline-none focus:ring-indigo-600 :ring-indigo-600" />
+                    @error('Alga')
+                    {{ $message }}
+                    @enderror
+                </div>
+                <div class="mb-4">
+                    <label for="Darbo_Patirtis" class="block text-gray-800 font-bold">Darbo patirtis:</label>
+                    <input name="Darbo_Patirtis" type="number"  class="w-full border border-gray-300 py-2 pl-3 rounded mt-2 outline-none focus:ring-indigo-600 :ring-indigo-600" />
+                    @error('Darbo_Patirtis')
+                    {{ $message }}
+                    @enderror
+                </div>
+                <div class="mb-4">
+                    <label for="Issilavinimas" class="block text-gray-800 font-bold">Išsilavinimas:</label>
+                    <input name="Issilavinimas" type="text"  class="w-full border border-gray-300 py-2 pl-3 rounded mt-2 outline-none focus:ring-indigo-600 :ring-indigo-600" />
+                    @error('Issilavinimas')
+                    {{ $message }}
+                    @enderror
+                </div>
+                <div class="mb-4">
+                    <label for="Idarbinimo_Data" class="block text-gray-800 font-bold">Įdarbinimo data:</label>
+                    <input name="Idarbinimo_Data" type="date"  class="w-full border border-gray-300 py-2 pl-3 rounded mt-2 outline-none focus:ring-indigo-600 :ring-indigo-600" />
+                    @error('Idarbinimo_Data')
+                    {{ $message }}
+                    @enderror
+                </div>
+                <div class="mb-4">
+                    <label for="Kabineto_NR" class="block text-gray-800 font-bold">Kabineto numeris:</label>
+                    <input name="Kabineto_NR" type="number"  class="w-full border border-gray-300 py-2 pl-3 rounded mt-2 outline-none focus:ring-indigo-600 :ring-indigo-600" />
+                    @error('Kabineto_NR')
+                    {{ $message }}
+                    @enderror
+                </div>
+                <div class="mb-4">
+                    <label for="Ar_Pavaduotoja" class="block text-gray-800 font-bold">Ar pavaduotoja:</label>
+                    <input name="Ar_Pavaduotoja" type="range" min="0" max="1" value="0"  class="w-full border border-gray-300 py-2 pl-3 rounded mt-2 outline-none focus:ring-indigo-600 :ring-indigo-600" />
+                    @error('Ar_Pavaduotoja')
+                    {{ $message }}
+                    @enderror
+                </div>
                 <button class="cursor-pointer py-2 px-4 block mt-6 bg-indigo-500 text-white font-bold w-full text-center rounded " type="submit">Pridėti naudotoją</button>
             </form>
         </div>

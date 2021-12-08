@@ -1,4 +1,4 @@
-@extends('layouts.PagrindisLangasSablonas')
+NamuDarboRedagavimoForma.blade.php@extends('layouts.PagrindisLangasSablonas')
 @section('content')
     <div class="h-screen bg-gray-100 justify-center">
         <div class="ml-96 py-6 px-8 h-120 w-80 mt-20 bg-white rounded shadow-xl">

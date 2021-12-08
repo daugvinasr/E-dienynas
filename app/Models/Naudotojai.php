@@ -11,5 +11,4 @@ class Naudotojai extends Model
     protected $table = 'Naudotojai';
     public $timestamps = false;
 
-
 }
