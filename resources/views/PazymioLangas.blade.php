@@ -37,7 +37,7 @@
                                     </select>
                                 </td>
                         @endif
-                        <td class="p-5 border-2 border-gray-500">{{$markData[0]->iverinimastvarkarastis->Laikas}} </td>
+                        <td class="p-5 border-2 border-gray-500">{{$markData[0]->iverinimastvarkarastis->Data}} </td>
                         <td class="p-5 border-2 border-gray-500">{{$markData[0]->iverinimastvarkarastis->tvarkarastispamoka->Pavadinimas}} </td>
                         <td class="p-5 border-2 border-gray-500">{{$markData[0]->iverinimastvarkarastis->Vieta}} </td>
                         <td class="p-5 border-2 border-gray-500">{{$markData[0]->iverinimastvarkarastis->tvarkarastispamoka->pamokamokytojas->mokytojasToNaudotojas->Vardas}}
