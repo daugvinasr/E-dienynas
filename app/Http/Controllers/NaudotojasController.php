@@ -18,10 +18,10 @@ class NaudotojasController extends Controller
         return view('PrisijungimoLangas');
     }
 
-    public function paskutinisRegistruotasNaudotojas()
-    {
-        return DB::table('Naudotojai')->latest('id_Naudotojas')->first();
-    }
+//    public function paskutinisRegistruotasNaudotojas()
+//    {
+//        return DB::table('Naudotojai')->latest('id_Naudotojas')->first();
+//    }
 
     private function rodytiRegistracija()
     {
@@ -216,14 +216,22 @@ class NaudotojasController extends Controller
         $naudotojas->Role = 'mokytojas';
         $naudotojas->save();
 
+        $naudotojoInformacija = Naudotojai::select('*')
+            ->where([
+                ['El_Pastas', '=', request('El_Pastas')],
+            ])
+            ->get();
+
+
         $mokytojas = new Mokytojai();
         $mokytojas->Alga = request('Alga');
         $mokytojas->Banko_Saskaita = request('Banko_Saskaita');
-        $mokytojas->Darbo_Patirtis = request('Darbo_Patirtis)');
-        $mokytojas->Idarbinimo_Data= request('Idarbinimo_Data)');
+        $mokytojas->Darbo_Patirtis = request('Darbo_Patirtis');
+        $mokytojas->Issilavinimas = request('Issilavinimas');
+        $mokytojas->Idarbinimo_Data= request('Idarbinimo_Data');
         $mokytojas->Kabineto_NR = request('Kabineto_NR');
         $mokytojas->Ar_Pavaduotoja = request('Ar_Pavaduotoja');
-        $mokytojas->fk_Naudotojas = $this->paskutinisRegistruotasNaudotojas();
+        $mokytojas->fk_Naudotojas = $naudotojoInformacija[0]->id_Naudotojas;
         $mokytojas->save();
         return redirect('/naudotojai');
     }
