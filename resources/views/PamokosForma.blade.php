@@ -7,4 +7,6 @@
             <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus ut placeat sint perspiciatis corrupti assumenda nihil explicabo excepturi voluptate voluptas. Iusto, nulla ex atque odit rerum voluptate obcaecati maiores! Dignissimos est, enim aspernatur possimus unde earum corporis ab? Voluptate aliquam est dignissimos commodi doloremque nobis vel at, perspiciatis quasi molestiae?</h1>
         </div>
     </section>
+
+
 @endsection

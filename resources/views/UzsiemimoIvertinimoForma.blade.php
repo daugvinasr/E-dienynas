@@ -11,8 +11,10 @@
                     <th class="p-5 text-left">Balas</th>
                     <th class="p-5 text-left">Lankomumas</th>
                     <th class="p-5 text-left">Mokinys</th>
+                        <th class="p-5 text-left"></th>
                     @elseif($t==0)
                     <th class="p-5 text-left">Pamoka/data/vieta/klasė</th>
+                        <th class="p-5 text-left"></th>
                     @else
                         <th class="p-5 text-left">Mokinys</th>
                         <th class="p-5 text-left">Įvertinimas</th>

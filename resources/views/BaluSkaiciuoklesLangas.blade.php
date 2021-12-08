@@ -12,6 +12,7 @@
                     <th class="p-5 text-left">Balai</th>
                     <th class="p-5 text-left">Papildomi balai</th>
                     <th class="p-5 text-left">Vidurkis</th>
+                    <th class="p-5 text-left"></th>
                 </tr>
                 </thead>
                 <tbody>

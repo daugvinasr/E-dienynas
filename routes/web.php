@@ -3,6 +3,7 @@
 use App\Http\Controllers\NamuDarbasController;
 use App\Http\Controllers\AtsiliepimasController;
 use App\Http\Controllers\NaudotojasController;
+use App\Http\Controllers\TvarkarastisController;
 use App\Http\Controllers\UzsiemimoIvertinimasController;
 use App\Http\Controllers\PranesimasController;
 use Illuminate\Support\Facades\Mail;
@@ -43,6 +44,12 @@ Route::get('/rodytiAtsiliepima/{id_atsiliepimas}', [AtsiliepimasController::clas
 Route::get('/istrintiAtsiliepima/{id_atsiliepimas}/{id_mokinys}', [AtsiliepimasController::class, 'istrintiAtsiliepima']);
 Route::get('/siustiAtsiliepima/{id_atsiliepimas}/{id_mokinys}', [AtsiliepimasController::class, 'siustiAtsiliepima']);
 
+Route::get('/pamokos', [\App\Http\Controllers\PamokaController::class, 'index']);
+Route::post('/pamokos', [\App\Http\Controllers\PamokaController::class, 'irasytiPamoka']);
+Route::get('/pasalintiPamoka', [\App\Http\Controllers\PamokaController::class, 'pasalintiPamoka']);
+Route::get('/redaguotiPamoka', [\App\Http\Controllers\PamokaController::class, 'rodytiRedaguotiPamoka']);
+Route::post('/redaguotiPamoka', [\App\Http\Controllers\PamokaController::class, 'redaguotiPamoka']);
+
 
 
 
@@ -74,6 +81,11 @@ Route::get('/pasalintinaudotoja', [NaudotojasController::class, 'pasalintiNaudot
 Route::get('/redaguotinaudotoja', [NaudotojasController::class, 'rodytiRedaguotiNaudotoja']);
 Route::post('/redaguotinaudotoja', [NaudotojasController::class, 'redaguotiNaudotoja']);
 
+<<<<<<< HEAD
 Route::get('/pranesimai', [PranesimasController::class, 'rodytiPranesimus']);
 Route::get('/siustipranesima', [PranesimasController::class, 'rodytiSiustiPranesima']);
 Route::post('/siustipranesima', [PranesimasController::class, 'siustiPranesima']);
+=======
+Route::get('/tvarkarastis', [TvarkarastisController::class, 'showTvarkarastis']);
+Route::get('/tvarkarastisEksportuoti', [TvarkarastisController::class, 'tvarkarastisEksportuoti']);
+>>>>>>> 111a93de4e41f8c9da27193100961e1bc0aa3cb2
