@@ -10,6 +10,7 @@
             <th class="px-4 py-3 text-center">Kalba</th>
             <th class="px-4 py-3 text-center">Aprašymas</th>
             <th class="px-4 py-3 text-center">Trukmė</th>
+            <th class="px-4 py-3 text-center">Mokytojas</th>
             <th class="px-4 py-3 text-center">Ištrinti</th>
             <th class="px-4 py-3 text-center">Redaguoti</th>
         </tr>
@@ -21,6 +22,9 @@
                 <td class="px-4 py-3 text-ms font-semibold border text-center">{{$data->Kalba}}</td>
                 <td class="px-4 py-3 text-ms font-semibold border text-center">{{$data->Aprasymas}}</td>
                 <td class="px-4 py-3 text-ms font-semibold border text-center">{{$data->Trukme}}</td>
+                <td class="px-4 py-3 text-ms font-semibold border text-center">{{$data->pamokamokytojas->mokytojasToNaudotojas->Vardas}}</td>
+                <br>
+
                 <td class="px-4 py-3 text-ms font-semibold border text-center " style="color:red"><a href="/pasalintiPamoka?id={{$data -> id_Pamoka}}">Pašalinti</a></td>
                 <td class="px-4 py-3 text-ms font-semibold border text-center"  style="color:red"><a href="/redaguotiPamoka?id={{$data -> id_Pamoka}}">Redaguoti</a></td>
             </tr>
@@ -56,10 +60,24 @@
                     @enderror
                 </div>
 
+
+
                 <div class="mb-4">
                     <label for="email" class="block text-gray-800 font-bold">Trukme</label>
                     <input name="Trukme" type="text"  class="w-full border border-gray-300 py-2 pl-3 rounded mt-2 outline-none focus:ring-indigo-600 :ring-indigo-600" />
                     @error('Trukme')
+                    {{ $message }}
+                    @enderror
+                </div>
+
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-800 font-bold">Mokytojas:</label>
+                    <select id="fk_Mokytojas" name="fk_Mokytojas">
+                        @foreach($VisiMokytojai as $data2)
+                            <option value="{{$data2->id_Mokytojas}}">{{$data2->mokytojasToNaudotojas->Vardas}}</option>
+                        @endforeach
+                    </select>
+                    @error('fk_Mokytojas')
                     {{ $message }}
                     @enderror
                 </div>

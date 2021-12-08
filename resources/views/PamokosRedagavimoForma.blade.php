@@ -33,6 +33,18 @@
                     @enderror
                 </div>
 
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-800 font-bold">Mokytojas:</label>
+                    <select id="fk_Mokytojas" name="fk_Mokytojas">
+                        @foreach($VisiMokytojai as $data2)
+                            <option value="{{$data2->id_Mokytojas}}">{{$data2->mokytojasToNaudotojas->Vardas}}</option>
+                        @endforeach
+                    </select>
+                    @error('fk_Mokytojas')
+                    {{ $message }}
+                    @enderror
+                </div>
+
                 <button class="cursor-pointer py-2 px-4 block mt-6 bg-indigo-500 text-white font-bold w-full text-center rounded " type="submit">Redaguoti pamoką</button>
             </form>
         </div>
