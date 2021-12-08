@@ -43,6 +43,12 @@ Route::get('/rodytiAtsiliepima/{id_atsiliepimas}', [AtsiliepimasController::clas
 Route::get('/istrintiAtsiliepima/{id_atsiliepimas}/{id_mokinys}', [AtsiliepimasController::class, 'istrintiAtsiliepima']);
 Route::get('/siustiAtsiliepima/{id_atsiliepimas}/{id_mokinys}', [AtsiliepimasController::class, 'siustiAtsiliepima']);
 
+Route::get('/pamokos', [\App\Http\Controllers\PamokaController::class, 'index']);
+Route::post('/pamokos', [\App\Http\Controllers\PamokaController::class, 'irasytiPamoka']);
+Route::get('/pasalintiPamoka', [\App\Http\Controllers\PamokaController::class, 'pasalintiPamoka']);
+Route::get('/redaguotiPamoka', [\App\Http\Controllers\PamokaController::class, 'rodytiRedaguotiPamoka']);
+Route::post('/redaguotiPamoka', [\App\Http\Controllers\PamokaController::class, 'redaguotiPamoka']);
+
 
 
 
