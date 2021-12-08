@@ -19,4 +19,8 @@ class Pranesimai extends Model
     {
         return $this->belongsTo(Mokiniai::class, 'fk_Mokinys', 'id_Mokinys');
     }
+    public function pranesimasToNaudotojas()
+    {
+        return $this->belongsTo(Naudotojai::class, 'Siuntejas', 'id_Naudotojas');
+    }
 }

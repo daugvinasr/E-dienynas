@@ -2,6 +2,7 @@
 @section('content')
     <div class="flex pt-20 min-h-screen">
         <div class="col-span-12">
+            <a href="/siustipranesima" class="ml-10 bg-teal-900 px-4 py-2 rounded text-white hover:bg-blue-500 text-sm">Siųsti pranešimą</a>
             @if(!$messageData->isEmpty())
 
                 <table class="table text-gray-400  space-y-6 border-2 border-gray-500">
@@ -10,10 +11,7 @@
                         <th class="p-5">Pavadinimas</th>
                         <th class="p-5">Aprašymas</th>
                         <th class="p-5 text-left">Data</th>
-                        <th class="p-5 text-left">Mokytojo ID</th>
-                        <th class="p-5 text-left">Mokinio ID</th>
-                        <th class="p-5 text-left"></th>
-                        <th colspan="3" class="p-5 text-center">Veiksmai</th>
+                        <th class="p-5 text-left">Siuntejas</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -22,10 +20,7 @@
                             <td class="p-5 border-2 border-gray-500">{{$data -> Pavadinimas}}</td>
                             <td class="p-5 border-2 border-gray-500">{{$data-> Aprasymas}}</td>
                             <td class="p-5 border-2 border-gray-500">{{$data-> Data}}</td>
-                            <td class="p-5 border-2 border-gray-500">{{$data -> fk_Mokytojas}}</td>
-                            <td class="p-5 border-2 border-gray-500">{{$data -> fk_Mokinys}}</td>
-                            <td class="p-5 border-2 border-gray-500 hover:bg-blue-300 hover:text-white font-bold"><a href="/placiaupranesimas?id={{$data -> id_Pranesimas}}">Plačiau</a></td>
-                            <td class="p-5 border-2 border-gray-500"><a href="/pasalintipranesima?id={{$data -> id_Pranesimas}}">Pašalinti</a></td>
+                            <td class="p-5 border-2 border-gray-500">{{$data -> pranesimasToNaudotojas -> Vardas}} {{$data -> pranesimasToNaudotojas -> Pavarde}}</td>
                         </tr>
                     @endforeach
                     @else

@@ -109,9 +109,7 @@ class NaudotojasController extends Controller
         return redirect('/');
     }
     public function rodytiNaudotojus(){
-            $userData = DB::table('Naudotojai')
-                ->select('Naudotojai.*')
-                ->get();
+            $userData = Naudotojai::all();
         return view('NaudotojuSarasoLangas', ['userData' => $userData]);
     }
     public function placiauNaudotojas(){

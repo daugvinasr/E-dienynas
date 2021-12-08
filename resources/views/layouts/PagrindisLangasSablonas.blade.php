@@ -88,10 +88,26 @@
                 </a>
             </li>
             <li>
+            @if(session('role') == 'mokinys')
             <li>
-                <a title="Atsiliepimai" href="/atsiliepimai" class="h-16 px-6 flex items-center hover:text-white w-full">
+                <a title="Atsiliepimai" href="/rodytiAtsiliepimuSarasa/{{session('id_person')}}" class="h-16 px-6 flex items-center hover:text-white w-full">
                     <i class="mx-auto">
                         <h1>Atsiliepimai</h1>
+                    </i>
+                </a>
+            </li>
+            @endif
+            <li>
+                <a title="pamokos" href="/pamokos" class="h-16 px-6 flex items-center hover:text-white w-full">
+                    <i class="mx-auto">
+                        <h1>Pamokos</h1>
+                    </i>
+                </a>
+            </li>
+            <li>
+                <a title="susirasinejimas" href="/pranesimai" class="h-16 px-6 flex items-center hover:text-white w-full">
+                    <i class="mx-auto">
+                        <h1>Susirašinėjimas</h1>
                     </i>
                 </a>
             </li>
@@ -128,6 +144,7 @@
                     </i>
                 </a>
             </li>
+            @if(session('role') == 'administratorius')
             <li>
                 <a title="Naudotojai" href="/naudotojai" class="h-16 px-6 flex items-center hover:text-white w-full">
                     <i class="mx-auto">
@@ -135,6 +152,7 @@
                     </i>
                 </a>
             </li>
+                @endif
         </ul>
 
     </nav>
