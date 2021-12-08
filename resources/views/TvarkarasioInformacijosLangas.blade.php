@@ -3,8 +3,27 @@
 
 @section('content')
     <section class="container mx-auto p-6 rounded-10">
-        <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg px-2 py-2">
-            <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus ut placeat sint perspiciatis corrupti assumenda nihil explicabo excepturi voluptate voluptas. Iusto, nulla ex atque odit rerum voluptate obcaecati maiores! Dignissimos est, enim aspernatur possimus unde earum corporis ab? Voluptate aliquam est dignissimos commodi doloremque nobis vel at, perspiciatis quasi molestiae?</h1>
+        <div class="w-3/4 mb-8 overflow-hidden rounded-lg shadow-lg px-2 py-2">
+                <table class="w-full">
+                    <thead>
+                    <tr class="text-md tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
+                        <th class="px-2 py-3 text-center">Pamoka</th>
+                        <th class="px-2 py-3 text-center">Data</th>
+                        <th class="px-2 py-3 text-center">Laikas</th>
+                        <th class="px-2 py-3 text-center">Vieta</th>
+                    </tr>
+                    </thead>
+                    <tbody class="bg-white">
+                    @foreach($tvarkarastisData as $data)
+                        <tr class="text-gray-700">
+                            <td class="px-2 py-3 text-ms font-semibold border text-center">{{$data-> tvarkarastispamoka -> Pavadinimas}}</td>
+                            <td class="px-2 py-3 text-ms font-semibold border text-center">{{$data->Data}}</td>
+                            <td class="px-2 py-3 text-ms font-semibold border text-center">{{$data->Laikas}}</td>
+                            <td class="px-2 py-3 text-ms font-semibold border text-center">{{$data->Vieta}}</td>
+                            @endforeach
+                        </tr>
+                    </tbody>
+                </table>
         </div>
     </section>
 @endsection
