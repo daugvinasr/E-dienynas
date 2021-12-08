@@ -2,9 +2,18 @@
 
 
 @section('content')
-    <section class="container mx-auto p-6 rounded-10">
-        <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg px-2 py-2">
-            <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus ut placeat sint perspiciatis corrupti assumenda nihil explicabo excepturi voluptate voluptas. Iusto, nulla ex atque odit rerum voluptate obcaecati maiores! Dignissimos est, enim aspernatur possimus unde earum corporis ab? Voluptate aliquam est dignissimos commodi doloremque nobis vel at, perspiciatis quasi molestiae?</h1>
+    @if(!$messageData->isEmpty())
+        <div class="flex pt-20 min-h-screen">
+            <div class="col-span-4">
+                @foreach($messageData as $data)
+                    @foreach($data -> toArray() as $column => $value)
+                        <div class="pt-10 pl-10 cursor-default md:text-1xl text-xl transition duration-200  font-bold text-black">{{$column}}:</div>
+                        <div class="pl-12 pt-2 pb-5 cursor-default md:text-1xl text-xl transition duration-200 text-black">{{$value}}</div>
+                    @endforeach
+                @endforeach
+
+                <a href="/pranesimai" class="ml-10 bg-teal-900 px-4 py-2 rounded text-white hover:bg-blue-500 text-sm">Atgal</a>
+            </div>
         </div>
-    </section>
+    @endif
 @endsection

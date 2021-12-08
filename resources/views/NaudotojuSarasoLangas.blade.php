@@ -5,6 +5,7 @@
             @if(session('role')=="mokytojas")
                 <a href="/pridetinaudotoja" class="ml-10 bg-teal-900 px-4 py-2 rounded text-white hover:bg-blue-500 text-sm">Pridėti naudotoją</a>
                 <a href="/pridetimokytoja" class="ml-10 bg-teal-900 px-4 py-2 rounded text-white hover:bg-blue-500 text-sm">Pridėti mokytoją</a>
+
             @endif
             @if(!$userData->isEmpty())
 
@@ -28,7 +29,7 @@
                             <td class="p-5 border-2 border-gray-500">{{$data-> Vardas}}</td>
                             <td class="p-5 border-2 border-gray-500">{{$data-> Pavarde}}</td>
                             <td class="p-5 border-2 border-gray-500">{{$data -> Role}}</td>
-                            <td class="p-5 border-2 border-gray-500"><a href="/pranesimasnaudotojas?id={{$data -> id_Naudotojas}}">Siųsti pranešimą</a></td>
+                            <td class="p-5 border-2 border-gray-500"><a href="/siustipranesima?id={{$data -> id_Naudotojas}}">Siųsti pranešimą</a></td>
                             @if(session('role')=="mokytojas")
                                 <td class="p-5 border-2 border-gray-500 hover:bg-blue-300 hover:text-white font-bold"><a href="/placiaunaudotojas?id={{$data -> id_Naudotojas}}">Plačiau</a></td>
                                 <td class="p-5 border-2 border-gray-500 text-orange"><a href="/redaguotinaudotoja?id={{$data -> id_Naudotojas}}">Redaguoti</a></td>

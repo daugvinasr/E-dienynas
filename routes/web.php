@@ -4,6 +4,7 @@ use App\Http\Controllers\NamuDarbasController;
 use App\Http\Controllers\AtsiliepimasController;
 use App\Http\Controllers\NaudotojasController;
 use App\Http\Controllers\UzsiemimoIvertinimasController;
+use App\Http\Controllers\PranesimasController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
@@ -72,3 +73,7 @@ Route::get('/placiaunaudotojas', [NaudotojasController::class, 'placiauNaudotoja
 Route::get('/pasalintinaudotoja', [NaudotojasController::class, 'pasalintiNaudotoja']);
 Route::get('/redaguotinaudotoja', [NaudotojasController::class, 'rodytiRedaguotiNaudotoja']);
 Route::post('/redaguotinaudotoja', [NaudotojasController::class, 'redaguotiNaudotoja']);
+
+Route::get('/pranesimai', [PranesimasController::class, 'rodytiPranesimus']);
+Route::get('/siustipranesima', [PranesimasController::class, 'rodytiSiustiPranesima']);
+Route::post('/siustipranesima', [PranesimasController::class, 'siustiPranesima']);
