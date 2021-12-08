@@ -81,11 +81,8 @@ Route::get('/pasalintinaudotoja', [NaudotojasController::class, 'pasalintiNaudot
 Route::get('/redaguotinaudotoja', [NaudotojasController::class, 'rodytiRedaguotiNaudotoja']);
 Route::post('/redaguotinaudotoja', [NaudotojasController::class, 'redaguotiNaudotoja']);
 
-<<<<<<< HEAD
 Route::get('/pranesimai', [PranesimasController::class, 'rodytiPranesimus']);
 Route::get('/siustipranesima', [PranesimasController::class, 'rodytiSiustiPranesima']);
 Route::post('/siustipranesima', [PranesimasController::class, 'siustiPranesima']);
-=======
 Route::get('/tvarkarastis', [TvarkarastisController::class, 'showTvarkarastis']);
 Route::get('/tvarkarastisEksportuoti', [TvarkarastisController::class, 'tvarkarastisEksportuoti']);
->>>>>>> 111a93de4e41f8c9da27193100961e1bc0aa3cb2
