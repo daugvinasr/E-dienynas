@@ -75,3 +75,4 @@ Route::get('/redaguotinaudotoja', [NaudotojasController::class, 'rodytiRedaguoti
 Route::post('/redaguotinaudotoja', [NaudotojasController::class, 'redaguotiNaudotoja']);
 
 Route::get('/tvarkarastis', [TvarkarastisController::class, 'showTvarkarastis']);
+Route::get('/tvarkarastisEksportuoti', [TvarkarastisController::class, 'tvarkarastisEksportuoti']);

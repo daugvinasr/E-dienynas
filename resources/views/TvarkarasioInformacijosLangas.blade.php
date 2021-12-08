@@ -24,6 +24,12 @@
                         </tr>
                     </tbody>
                 </table>
+            <div class="flex flex-row-reverse pt-2 p-1">
+                <a class="shadow-lg bg-green-700 hover:bg-green-600 text-white rounded-md py-2 px-2" href="/tvarkarastisEksportuoti">Exportuoti tvarkarašti</a>
+            </div>
         </div>
+
+
+
     </section>
 @endsection
