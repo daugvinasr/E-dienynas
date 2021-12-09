@@ -1,7 +1,7 @@
 @extends('layouts.PagrindisLangasSablonas')
 @section('content')
     <div class="h-screen bg-gray-100 justify-center">
-        <div class="ml-96 py-6 px-8 h-120 w-80 mt-20 bg-white rounded shadow-xl">
+        <div class="ml-96 py-6 px-8 h-120 w-1/4 mt-20 bg-white rounded shadow-xl">
             <form method="POST">
                 @csrf
                 <div class="mb-4">
@@ -29,7 +29,7 @@
                     <label for="email" class="block text-gray-800 font-bold">Užsiemimas:</label>
                     <select id="fk_Tvarkarascio_Uzsiemimas" name="fk_Tvarkarascio_Uzsiemimas">
                         @foreach($uzsiemimaiData as $data)
-                        <option value="{{$data -> id_Tvarkarascio_Uzsiemimas}}">{{$data -> Data}} {{$data -> Laikas}} {{$data -> Vieta}}</option>
+                        <option value="{{$data -> id_Tvarkarascio_Uzsiemimas}}">{{$data -> tvarkarastispamoka -> Pavadinimas}} {{$data -> Data}} {{$data -> Laikas}} {{$data -> Vieta}}</option>
                         @endforeach
                     </select>
                     @error('fk_Tvarkarascio_Uzsiemimas')

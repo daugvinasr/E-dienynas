@@ -30,7 +30,7 @@ class NamuDarbasController extends Controller
         return view('NamuDarboSarasoLangas', ['homeworkData' => $homeworkData]);
     }
     public function showAddHomework(){
-        $uzsiemimaiData = Tvarkarascio_uzsiemimai::all();
+        $uzsiemimaiData = Tvarkarascio_uzsiemimai::where('fk_Klase',session('id_klase'))->get();
         return view('NamuDarboPridejimoForma', ['uzsiemimaiData' => $uzsiemimaiData]);
     }
     public function addHomework(){
@@ -65,7 +65,7 @@ class NamuDarbasController extends Controller
         $homeworkData = Namu_darbai::where('id_Namu_Darbas', $id)->get();
         $temp=$homeworkData[0]->fk_Tvarkarascio_Uzsiemimas;
         $uzsiemimasData = Tvarkarascio_uzsiemimai::where('id_Tvarkarascio_Uzsiemimas',$temp)->get();
-        $uzsiemimaiData = Tvarkarascio_uzsiemimai::where('id_Tvarkarascio_Uzsiemimas','!=',$temp)->get();
+        $uzsiemimaiData = Tvarkarascio_uzsiemimai::where('id_Tvarkarascio_Uzsiemimas','!=',$temp)->where('fk_Klase',session('id_klase'))->get();
         return view('NamuDarboRedagavimoForma', ['homeworkData' => $homeworkData,'uzsiemimasData' => $uzsiemimasData,'uzsiemimaiData' => $uzsiemimaiData]);
     }
     public function editHomework(){
