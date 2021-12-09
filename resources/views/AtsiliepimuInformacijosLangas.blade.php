@@ -10,7 +10,7 @@
                         <label class=" text-center text-gray-700 text-xl font-bold mb-2">
                             Atsiliepimas Mokiniui: {{$atsiliepimoInformacija[0]->atsiliepimasToMokinys->mokinysToNaudotojas->Vardas}} {{$atsiliepimoInformacija[0]->atsiliepimasToMokinys->mokinysToNaudotojas->Pavarde}}
                             <br>
-                            Iš: {{$atsiliepimoInformacija[0]->atsiliepimasToMokytojas->mokytojasToNaudotojas->Vardas}} {{$atsiliepimoInformacija[0]->atsiliepimasToMokinys->mokinysToNaudotojas->Pavarde}}
+                            Iš: {{$atsiliepimoInformacija[0]->atsiliepimasToMokytojas->mokytojasToNaudotojas->Vardas}} {{$atsiliepimoInformacija[0]->atsiliepimasToMokytojas->mokytojasToNaudotojas->Pavarde}}
                         </label>
                     </div>
                     <div class="mb-4">

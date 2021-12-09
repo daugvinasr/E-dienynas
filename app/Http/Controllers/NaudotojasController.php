@@ -145,16 +145,16 @@ class NaudotojasController extends Controller
             'Zodiako_Zenklas' => 'required|max:254',
             'Pasto_Kodas' => 'required|max:254',
             'Gatve' => 'required|max:254',
-            'El_Pastas' => 'required|email|unique:Naudotojai'
+            'El_Pastas' => 'required|email'
         ]);
         $id = request('id');
         $userUpdate = Naudotojai::where('id_Naudotojas', $id);
         $userUpdate->update([
-            'Vardas' =>request('vardas'),
-            'Pavarde'=>request('pavarde'),
-            'Amzius'=>request('amzius'),
-            'Role'=>request('role'),
-            'Miestas'=>request('miestas'),
+            'Vardas' =>request('Vardas'),
+            'Pavarde'=>request('Pavarde'),
+            'Amzius'=>request('Amzius'),
+            'Role'=>request('Role'),
+            'Miestas'=>request('Miestas'),
             'Galimybiu_Pasas' => request('Galimybiu_Pasas'),
             'Telefono_Numeris'=>request('Telefono_Numeris'),
             'Asmens_Kodas'=>request('Asmens_Kodas'),

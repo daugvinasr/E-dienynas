@@ -7,8 +7,10 @@
             <div class="col-span-4">
                 @foreach($userData as $data)
                     @foreach($data -> toArray() as $column => $value)
+                        @if($column!='Slaptazodis' && $column!='id_Naudotojas')
                 <div class="pl-10 cursor-default md:text-1xl text-sm transition duration-200  font-bold text-black">{{$column}}:</div>
                 <div class="pl-12 pt-2 pb-2 cursor-default md:text-1xl text-sm transition duration-200 text-black">{{$value}}</div>
+                        @endif
                 @endforeach
                 @endforeach
 

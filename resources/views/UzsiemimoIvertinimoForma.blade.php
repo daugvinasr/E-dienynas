@@ -69,7 +69,7 @@
                             @foreach ($teacherData[0]->mokytojasPamoka as $i)
                                 @foreach ($i->pamokaTvarkarastis as $j)
                                     <option value={{$j->id_Tvarkarascio_Uzsiemimas}}
-                                    >{{ $i->Pavadinimas }} {{ $j->Laikas }} {{ $j->Vieta }} {{ $j->tvarkarastisToKlase->Pavadinimas }}</option>
+                                    >{{ $i->Pavadinimas }} {{ $j->Data }} {{ $j->Laikas }} {{ $j->Vieta }} {{ $j->tvarkarastisToKlase->Pavadinimas }}</option>
                                 @endforeach
                             @endforeach
                         </select></td>

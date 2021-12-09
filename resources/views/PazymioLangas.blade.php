@@ -16,6 +16,12 @@
                     <th class="p-5 text-center">Vieta</th>
                     <th class="p-5 text-center">Mokytojas</th>
                     <th class="p-5 text-center">Mokinys</th>
+                    @if(session('role') == 'mokytojas' && $n!=1)
+                        <th class="p-5" colspan="2"></th>
+                    @endif
+                    @if(session('role') == 'mokytojas' && $n==1)
+                        <th class="p-5" ></th>
+                    @endif
                 </tr>
                 </thead>
                 <tbody>

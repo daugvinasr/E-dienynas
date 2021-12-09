@@ -29,7 +29,7 @@
                     <label for="email" class="block text-gray-800 font-bold">Užsiemimas:</label>
                     <select id="fk_Tvarkarascio_Uzsiemimas" name="fk_Tvarkarascio_Uzsiemimas">
                         @foreach($uzsiemimaiData as $data)
-                        <option value="{{$data -> id_Tvarkarascio_Uzsiemimas}}">{{$data -> id_Tvarkarascio_Uzsiemimas}}</option>
+                        <option value="{{$data -> id_Tvarkarascio_Uzsiemimas}}">{{$data -> Data}} {{$data -> Laikas}} {{$data -> Vieta}}</option>
                         @endforeach
                     </select>
                     @error('fk_Tvarkarascio_Uzsiemimas')
