@@ -31,7 +31,7 @@
                         @endforeach
                         </td>
                         <td class="p-5 border-2 border-gray-500">{{ App\Http\Controllers\UzsiemimoIvertinimasController::vidurkis($data) }}</td>
-                        <td class="p-5 border-2 border-gray-500"><a href="/skaiciuotibala?pamoka={{$data -> id_Pamoka }}">Skaičioti</a></td>
+                        <td class="p-5 border-2 border-gray-500"><a href="/skaiciuotibala?pamoka={{$data -> id_Pamoka }}">Skaičiuoti</a></td>
                     </tr>
                 @endforeach
 @endsection

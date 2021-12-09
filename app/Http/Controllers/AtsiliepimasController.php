@@ -55,7 +55,7 @@ class AtsiliepimasController extends Controller
             return view('AtsiliepimuSarasoLangas', ['atsiliepimoInformacija' => $atsiliepimoInformacija]);
         }
 
-        if (session('role') == 'mokytojas')
+        if (session('role') == 'mokytojas' || session('role') == 'administratorius')
         {
             $mokiniuInformacija = Mokiniai::all();
             if (sizeof($mokiniuInformacija) > 0)

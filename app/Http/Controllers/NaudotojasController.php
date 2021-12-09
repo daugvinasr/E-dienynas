@@ -23,7 +23,7 @@ class NaudotojasController extends Controller
 //        return DB::table('Naudotojai')->latest('id_Naudotojas')->first();
 //    }
 
-    private function rodytiRegistracija()
+    public function rodytiRegistracija()
     {
         return view('RegistracijosLangas');
     }

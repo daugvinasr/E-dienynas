@@ -72,13 +72,14 @@
 
 <body class="antialiased h-full">
 
-<div class="h-full w-full flex antialiased text-gray-800 bg-white">
+<div class="h-full w-full flex overflow-hidden antialiased text-gray-800 bg-white">
     <!-- section body side nav -->
     <nav aria-label="side bar" aria-orientation="vertical" class="flex-none flex flex-col items-center text-center bg-teal-900 text-gray-400 border-r">
         <div class="h-16 flex items-center w-full">
         </div>
 
         <ul>
+            @if(session('role')!='svecias' && session('id_user')!=null)
             <li>
                 <a title="Pagrindinis" href="/" class="h-16 px-6 flex items-center hover:text-white w-full">
                     <i class="mx-auto">
@@ -96,6 +97,7 @@
                 </a>
             </li>
             @endif
+                @if(session('role') == 'administratorius')
             <li>
                 <a title="pamokos" href="/pamokos" class="h-16 px-6 flex items-center hover:text-white w-full">
                     <i class="mx-auto">
@@ -103,6 +105,7 @@
                     </i>
                 </a>
             </li>
+                @endif
             <li>
                 <a title="susirasinejimas" href="/pranesimai" class="h-16 px-6 flex items-center hover:text-white w-full">
                     <i class="mx-auto">
@@ -127,7 +130,7 @@
                 </li>
 
             @endif
-            @if(session('role') == 'mokytojas')
+            @if(session('role') == 'mokytojas' || session('role') == 'administratorius')
                 <li>
                     <a title="Pažymiai" href="/rodytiivercioforma" class="h-16 px-6 flex items-center hover:text-white w-full">
                         <i class="mx-auto">
@@ -161,6 +164,7 @@
                 </a>
             </li>
                 @endif
+            @endif
         </ul>
 
     </nav>

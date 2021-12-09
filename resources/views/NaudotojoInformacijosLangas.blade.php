@@ -3,12 +3,12 @@
 
 @section('content')
     @if(!$userData->isEmpty())
-        <div class="flex pt-20 min-h-screen">
+        <div class="flex min-h-screen">
             <div class="col-span-4">
                 @foreach($userData as $data)
                     @foreach($data -> toArray() as $column => $value)
-                <div class="pt-10 pl-10 cursor-default md:text-1xl text-xl transition duration-200  font-bold text-black">{{$column}}:</div>
-                <div class="pl-12 pt-2 pb-5 cursor-default md:text-1xl text-xl transition duration-200 text-black">{{$value}}</div>
+                <div class="pl-10 cursor-default md:text-1xl text-sm transition duration-200  font-bold text-black">{{$column}}:</div>
+                <div class="pl-12 pt-2 pb-2 cursor-default md:text-1xl text-sm transition duration-200 text-black">{{$value}}</div>
                 @endforeach
                 @endforeach
 

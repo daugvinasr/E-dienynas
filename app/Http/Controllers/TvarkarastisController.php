@@ -20,7 +20,7 @@ class TvarkarastisController extends Controller
     {
         $tvarkarastisData = Tvarkarascio_uzsiemimai::where('Data','>=',date('y-m-d'))->where('fk_Klase',session('id_klase'))->orderBy('Data')->orderBy('Laikas')->get();
 
-        $calendar = Calendar::create('Laracon Online');
+        $calendar = Calendar::create('E-Dienynas');
         foreach ($tvarkarastisData as $data)
         {
             $calendar->event(Event::create($data->tvarkarastispamoka->Pavadinimas)->startsAt(new DateTime($data->Data." ".$data->Laikas,new DateTimeZone('Europe/Vilnius')))->address($data->Vieta));

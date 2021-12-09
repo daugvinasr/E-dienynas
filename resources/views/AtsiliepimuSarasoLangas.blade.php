@@ -71,7 +71,7 @@
         @endif
     @endif
 
-    @if(session('role') == 'mokytojas' && !isset($studentoID))
+    @if((session('role') == 'mokytojas' || session('role') == 'administratorius') && !isset($studentoID) )
         <section class="container mx-auto p-6 rounded-10">
             <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg p-4">
                 <div class="w-full">
@@ -87,7 +87,7 @@
                                 </select>
                             </div>
                             <button class="bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-                                rodyti atsiliepimus
+                                Rodyti atsiliepimus
                             </button>
                         </form>
                     </div>
@@ -97,7 +97,7 @@
 
     @endif
 
-    @if(session('role') == 'mokytojas' && isset($studentoID))
+    @if((session('role') == 'mokytojas' || session('role') == 'administratorius') && isset($studentoID))
 
         @if(!$atsiliepimoInformacija->isEmpty())
             <section class="container mx-auto p-6 rounded-10">
