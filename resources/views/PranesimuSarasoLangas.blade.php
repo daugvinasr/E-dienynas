@@ -2,7 +2,6 @@
 @section('content')
     <div class="flex pt-20 min-h-screen">
         <div class="col-span-12">
-            <a href="/siustipranesima" class="ml-10 bg-teal-900 px-4 py-2 rounded text-white hover:bg-blue-500 text-sm">Siųsti pranešimą</a>
             @if(!$messageData->isEmpty())
 
                 <table class="table text-gray-400  space-y-6 border-2 border-gray-500">
@@ -23,9 +22,20 @@
                             <td class="p-5 border-2 border-gray-500">{{$data -> pranesimasToNaudotojas -> Vardas}} {{$data -> pranesimasToNaudotojas -> Pavarde}}</td>
                         </tr>
                     @endforeach
+                    </tbody>
+                </table>
+                <form action="/siustipranesima">
+                    <button class="bg-green-700 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                        Siųsti pranešimą
+                    </button>
+                </form>
+        </div>
+    </div>
+
                     @else
                         <div class="p-10 cursor-default md:text-1xl text-xl hover:text-red-500 transition duration-200  font-bold text-red-600">
                             Pranešimų nėra.
                         </div>
-    @endif
+            @endif
+
 @endsection

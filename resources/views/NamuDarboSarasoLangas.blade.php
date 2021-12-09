@@ -1,12 +1,10 @@
 @extends('layouts.PagrindisLangasSablonas')
 @section('content')
-    <div class="flex pt-20 min-h-screen">
-        <div class="col-span-12">
-            @if(session('role')=="mokytojas")
-                <a href="/pridetinamudarba" class="ml-10 bg-teal-900 px-4 py-2 rounded text-white hover:bg-blue-500 text-sm">Pridėti namų darbą</a>
-            @endif
-    @if(!$homeworkData->isEmpty())
 
+
+    @if(!$homeworkData->isEmpty())
+        <div class="flex pt-20 min-h-screen">
+            <div class="col-span-12">
                 <table class="table text-gray-400  space-y-6 border-2 border-gray-500">
                     <thead class="bg-blue-600 text-white">
                     <tr>
@@ -35,9 +33,16 @@
                             @endif
                         </tr>
                     @endforeach
-                    @else
-                        <div class="p-10 cursor-default md:text-1xl text-xl hover:text-red-500 transition duration-200  font-bold text-red-600">
-                            Neturite namų darbų. :)
-                        </div>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    @else
+        <div class="p-10 cursor-default md:text-1xl text-xl hover:text-red-500 transition duration-200  font-bold text-red-600">
+            Neturite namų darbų. :)
+        </div>
     @endif
+
+
+
 @endsection
