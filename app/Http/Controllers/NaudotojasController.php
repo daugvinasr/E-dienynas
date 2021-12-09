@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Administratoriai;
+use App\Models\Klases;
 use App\Models\Mokiniai;
 use App\Models\Mokytojai;
 use App\Models\Naudotojai;
@@ -51,6 +52,8 @@ class NaudotojasController extends Controller
             else if ($data[0]->Role == 'mokytojas')
             {
                 $duomenys = Mokytojai::select('*')->where([['fk_Naudotojas', '=', $data[0]->id_Naudotojas]])->get();
+                $duomenys2 = Klases::where('fk_Mokytojas',$duomenys[0]->id_Mokytojas)->get();
+                Session::put('id_klase', $duomenys2[0]->id_Klase);
                 Session::put('id_person', $duomenys[0]->id_Mokytojas);
             }
             else if ($data[0]->Role == 'administratorius')

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Http;
 class NamuDarbasController extends Controller
 {
     public function showHomework(){
-        if(session('role')=='mokinys') {
+        if(session('role')=='mokinys' || session('role')=='mokytojas' ) {
             $homeworkData = DB::table('Namu_darbai')
                 ->leftJoin('Tvarkarascio_uzsiemimai', 'Namu_darbai.fk_Tvarkarascio_Uzsiemimas', '=', 'Tvarkarascio_uzsiemimai.id_Tvarkarascio_Uzsiemimas')
                 ->join('Pamokos','Tvarkarascio_uzsiemimai.fk_Pamoka','=','Pamokos.id_Pamoka')
