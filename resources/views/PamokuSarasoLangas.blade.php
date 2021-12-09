@@ -35,7 +35,7 @@
 
 
     <div class="justify-center ">
-        <div class="ml-96 py-6 px-8 h-120 w-80 mt-20 bg-white rounded shadow-xl">
+        <div class="ml-6 py-6 px-8 h-120 w-80 mt-20 bg-white rounded shadow-xl">
             <form method="POST">
                 @csrf
                 <div class="mb-4">
