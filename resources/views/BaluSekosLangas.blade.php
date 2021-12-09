@@ -1,15 +1,15 @@
 @extends('layouts.PagrindisLangasSablonas')
 
 @section('content')
-    <div class="flex pt-20 min-h-screen">
-        <div class="col-span-12">
-            <table class="table text-gray-400  space-y-6 border-2 border-gray-500">
-                <thead class="bg-blue-600 text-white">
-                <tr>
-                    <th class="p-5">Pamoka</th>
-                    <th class="p-5 text-left">Balai</th>
-                    <th class="p-5 text-left">Vidurkis</th>
-                    <th class="p-5 text-left">Skaičiuoti bala</th>
+    <section class="container mx-auto p-6 rounded-10">
+        <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg p-4">
+            <table class="w-full">
+                <thead>
+                <tr class="text-md tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
+                    <th class="p-5 text-center">Pamoka</th>
+                    <th class="p-5 text-center">Balai</th>
+                    <th class="p-5 text-center">Vidurkis</th>
+                    <th class="p-5 text-center">Skaičiuoti balą</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -31,7 +31,7 @@
                         @endforeach
                         </td>
                         <td class="p-5 border-2 border-gray-500">{{ App\Http\Controllers\UzsiemimoIvertinimasController::vidurkis($data) }}</td>
-                        <td class="p-5 border-2 border-gray-500"><a href="/skaiciuotibala?pamoka={{$data -> id_Pamoka }}">Skaičiuoti</a></td>
+                        <td class="p-5 border-2 border-gray-500"><a href="/skaiciuotibala?pamoka={{$data -> id_Pamoka }}"><b>Skaičiuoti</b></a></td>
                     </tr>
                 @endforeach
 @endsection

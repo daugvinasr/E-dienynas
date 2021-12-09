@@ -3,7 +3,7 @@
 
 @section('content')
     <section class="container mx-auto p-6 rounded-10">
-        <div class="w-3/4 mb-8 overflow-hidden rounded-lg shadow-lg px-2 py-2">
+        <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg p-4">
                 <table class="w-full">
                     <thead>
                     <tr class="text-md tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
@@ -15,11 +15,11 @@
                     </thead>
                     <tbody class="bg-white">
                     @foreach($tvarkarastisData as $data)
-                        <tr class="text-gray-700">
-                            <td class="px-2 py-3 text-ms font-semibold border text-center">{{$data-> tvarkarastispamoka -> Pavadinimas}}</td>
-                            <td class="px-2 py-3 text-ms font-semibold border text-center">{{$data->Data}}</td>
-                            <td class="px-2 py-3 text-ms font-semibold border text-center">{{$data->Laikas}}</td>
-                            <td class="px-2 py-3 text-ms font-semibold border text-center">{{$data->Vieta}}</td>
+                        <tr class="bg-gray-200 lg:text-black">
+                            <td class="p-5 border-2 border-gray-500">{{$data-> tvarkarastispamoka -> Pavadinimas}}</td>
+                            <td class="p-5 border-2 border-gray-500">{{$data->Data}}</td>
+                            <td class="p-5 border-2 border-gray-500">{{$data->Laikas}}</td>
+                            <td class="p-5 border-2 border-gray-500">{{$data->Vieta}}</td>
                             @endforeach
                         </tr>
                     </tbody>

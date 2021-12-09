@@ -2,20 +2,20 @@
 
 
 @section('content')
-    <div class="flex pt-20 min-h-screen">
-        <div class="col-span-12">
-            <table class="table text-gray-400  space-y-6 border-2 border-gray-500">
-                <thead class="bg-blue-600 text-white">
-                <tr>
+    <section class="container mx-auto p-6 rounded-10">
+        <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg p-4">
+            <table class="w-full">
+                <thead>
+                <tr class="text-md tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
                     <th class="p-5">Balas</th>
                     @if(session('role') == 'mokytojas' && $n!=1)
                         <th class="p-5">Pakeistas balas</th>
                     @endif
-                    <th class="p-5 text-left">Data</th>
-                    <th class="p-5 text-left">Pamoka</th>
-                    <th class="p-5 text-left">Vieta</th>
-                    <th class="p-5 text-left">Mokytojas</th>
-                    <th class="p-5 text-left">Mokinys</th>
+                    <th class="p-5 text-center">Data</th>
+                    <th class="p-5 text-center">Pamoka</th>
+                    <th class="p-5 text-center">Vieta</th>
+                    <th class="p-5 text-center">Mokytojas</th>
+                    <th class="p-5 text-center">Mokinys</th>
                 </tr>
                 </thead>
                 <tbody>

@@ -2,22 +2,22 @@
 
 
 @section('content')
-    <div class="flex pt-20 min-h-screen">
-        <div class="col-span-12">
-            <table class="table text-gray-400  space-y-6 border-2 border-gray-500">
-                <thead class="bg-blue-600 text-white">
-                <tr>
+    <section class="container mx-auto p-6 rounded-10">
+        <div "w-full mb-8 overflow-hidden rounded-lg shadow-lg p-4">
+            <table class="w-full">
+                <thead>
+                <tr class="text-md tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
                     @if($t>0)
-                    <th class="p-5 text-left">Balas</th>
-                    <th class="p-5 text-left">Lankomumas</th>
-                    <th class="p-5 text-left">Mokinys</th>
+                    <th class="p-5 text-center">Balas</th>
+                    <th class="p-5 text-center">Lankomumas</th>
+                    <th class="p-5 text-center">Mokinys</th>
                         <th class="p-5 text-left"></th>
                     @elseif($t==0)
-                    <th class="p-5 text-left">Pamoka/data/vieta/klasė</th>
-                        <th class="p-5 text-left"></th>
+                    <th class="p-5 text-center">Pamoka / data / vieta / klasė</th>
+                        <th class="p-5 text-center">Veiksmai</th>
                     @else
-                        <th class="p-5 text-left">Mokinys</th>
-                        <th class="p-5 text-left">Įvertinimas</th>
+                        <th class="p-5 text-center">Mokinys</th>
+                        <th class="p-5 text-center">Įvertinimas</th>
                     @endif
                 </tr>
                 </thead>
