@@ -236,4 +236,73 @@ class NaudotojasController extends Controller
         $mokytojas->save();
         return redirect('/naudotojai');
     }
+
+    public function rodytiPridetiMokini()
+    {
+        $klaseData = Klases::all();
+        return view('MokinioPridejimoForma',[ 'klaseData' => $klaseData]);
+    }
+
+
+    public function pridetiMokini()
+    {
+        request()->validate([
+            //naudotojo duomenys
+            'Vardas' => 'required|max:254',
+            'Pavarde' => 'required|max:254',
+            'Amzius' => 'required|max:254',
+            'Miestas' => 'required|max:254',
+            'Telefono_Numeris' => 'required|max:254',
+            'Asmens_Kodas' => 'required|max:254',
+            'Gimimo_Data' => 'required',
+            'Lytis' => 'required|max:254',
+            'Zodiako_Zenklas' => 'required|max:254',
+            'Pasto_Kodas' => 'required|max:254',
+            'Gatve' => 'required|max:254',
+            'El_Pastas' => 'required|email|unique:Naudotojai',
+            'Slaptazodis' => 'required|max:254',
+            //mokytojo duomenys
+            'Tevu_Numeris' => 'required|max:254',
+            'Tevu_Adresas' => 'required|max:254',
+            'Ar_Seniunas' => 'required|max:254',
+            'Ar_Pavaduotojas' => 'required|max:254',
+            'fk_Klase' => 'required|max:254',
+        ]);
+        $naudotojas = new Naudotojai();
+        $naudotojas->Vardas = request('Vardas');
+        $naudotojas->Pavarde = request('Pavarde');
+        $naudotojas->Amzius = request('Amzius');
+        $naudotojas->Miestas = request('Miestas');
+        $naudotojas->Telefono_Numeris = request('Telefono_Numeris');
+        $naudotojas->Asmens_Kodas = request('Asmens_Kodas');
+        $naudotojas->Gimimo_Data = request('Gimimo_Data');
+        $naudotojas->Lytis = request('Lytis');
+        $naudotojas->Zodiako_Zenklas = request('Zodiako_Zenklas');
+        $naudotojas->Pasto_Kodas = request('Pasto_Kodas');
+        $naudotojas->Gatve = request('Gatve');
+        $naudotojas->Galimybiu_Pasas = request('Galimybiu_Pasas');
+        $naudotojas->El_Pastas = request('El_Pastas');
+        $naudotojas->Slaptazodis = Hash::make(request('Slaptazodis'));
+        $naudotojas->Role = 'mokinys';
+        $naudotojas->save();
+
+        $naudotojoInformacija = Naudotojai::select('*')
+            ->where([
+                ['El_Pastas', '=', request('El_Pastas')],
+            ])
+            ->get();
+
+        $mokinys = new Mokiniai();
+        $mokinys ->Tevu_Numeris = request('Tevu_Numeris');
+        $mokinys ->Tevu_Adresas = request('Tevu_Adresas');
+        $mokinys ->Ar_Seniunas = request('Ar_Seniunas');
+        $mokinys ->Ar_Pavaduotojas = request('Ar_Pavaduotojas');
+        $mokinys ->fk_Klase = request('fk_Klase');
+        $mokinys ->fk_Naudotojas = $naudotojoInformacija[0]->id_Naudotojas;
+        $mokinys->save();
+        return redirect('/naudotojai');
+
+    }
+
+
 }

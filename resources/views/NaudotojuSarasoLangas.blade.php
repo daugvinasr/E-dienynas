@@ -29,7 +29,7 @@
                     </tbody>
                 </table>
                     </div>
-                    <a href="/pridetinaudotoja" class="ml-10 bg-teal-900 px-4 py-2 rounded text-white hover:bg-blue-500 text-sm">Pridėti naudotoją</a>
+                    <a href="/pridetiMokini" class="ml-10 bg-teal-900 px-4 py-2 rounded text-white hover:bg-blue-500 text-sm">Pridėti mokinį</a>
                     <a href="/pridetimokytoja" class="ml-10 bg-teal-900 px-4 py-2 rounded text-white hover:bg-blue-500 text-sm">Pridėti mokytoją</a>
                 </section>
                     @else
