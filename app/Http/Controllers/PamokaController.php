@@ -55,7 +55,7 @@ class PamokaController extends Controller
             'Pavadinimas' => 'required|max:254',
             'Kalba' => 'required|max:254',
             'Aprasymas' => 'required|max:254',
-            'Trukme' => 'required|max:254',
+            'Trukme' => 'required|integer|max:254',
             'fk_Mokytojas' => 'required|max:254',
         ]);
         $id = request('id');

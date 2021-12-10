@@ -122,6 +122,8 @@ class NaudotojasController extends Controller
     }
     public function pasalintiNaudotoja(){
         $id = request('id');
+        Mokiniai::where('fk_Naudotojas',$id)->delete();
+        Mokytojai::where('fk_Naudotojas',$id)->delete();
         Naudotojai::where('id_Naudotojas', $id)->delete();
         return redirect('/naudotojai');
     }

@@ -14,7 +14,7 @@
                 <div class="mb-4">
                     <label for="email" class="block text-gray-800 font-bold">Kalba</label>
                     <input value="{{$userData[0]->Kalba}}" name="Kalba" type="text"  class="w-full border border-gray-300 py-2 pl-3 rounded mt-2 outline-none focus:ring-indigo-600 :ring-indigo-600" />
-                    @error('Atlikti_Iki')
+                    @error('Kalba')
                     {{ $message }}
                     @enderror
                 </div>

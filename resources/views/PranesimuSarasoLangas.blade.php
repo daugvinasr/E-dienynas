@@ -33,6 +33,11 @@
                 </section>
                     @else
                         <div class="p-10 cursor-default md:text-1xl text-xl hover:text-red-500 transition duration-200  font-bold text-red-600">
+                            <form action="/siustipranesima">
+                                <button class="bg-green-700 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" name="action" value="marks">
+                                    Siųsti pranešimą
+                                </button>
+                            </form>
                             Pranešimų nėra.
                         </div>
             @endif
